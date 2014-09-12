@@ -1,0 +1,7 @@
+c:\users\thanhtuan\documents\visual studio 2012\Projects\WebCrawler\WebCrawler\bin\WebCrawler.dll
+c:\users\thanhtuan\documents\visual studio 2012\Projects\WebCrawler\WebCrawler\bin\WebCrawler.pdb
+c:\users\thanhtuan\documents\visual studio 2012\Projects\WebCrawler\WebCrawler\bin\WebCrawler.Core.dll
+c:\users\thanhtuan\documents\visual studio 2012\Projects\WebCrawler\WebCrawler\bin\WebCrawler.Core.pdb
+c:\users\thanhtuan\documents\visual studio 2012\Projects\WebCrawler\WebCrawler\obj\Release\WebCrawler.csprojResolveAssemblyReference.cache
+c:\users\thanhtuan\documents\visual studio 2012\Projects\WebCrawler\WebCrawler\obj\Release\WebCrawler.dll
+c:\users\thanhtuan\documents\visual studio 2012\Projects\WebCrawler\WebCrawler\obj\Release\WebCrawler.pdb

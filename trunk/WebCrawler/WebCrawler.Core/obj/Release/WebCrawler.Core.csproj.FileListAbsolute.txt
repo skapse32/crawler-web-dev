@@ -1,0 +1,4 @@
+c:\users\thanhtuan\documents\visual studio 2012\Projects\WebCrawler\WebCrawler.Core\bin\Release\WebCrawler.Core.dll
+c:\users\thanhtuan\documents\visual studio 2012\Projects\WebCrawler\WebCrawler.Core\bin\Release\WebCrawler.Core.pdb
+c:\users\thanhtuan\documents\visual studio 2012\Projects\WebCrawler\WebCrawler.Core\obj\Release\WebCrawler.Core.dll
+c:\users\thanhtuan\documents\visual studio 2012\Projects\WebCrawler\WebCrawler.Core\obj\Release\WebCrawler.Core.pdb
