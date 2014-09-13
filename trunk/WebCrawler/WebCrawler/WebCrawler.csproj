@@ -60,7 +60,31 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="css\bootstrap-theme.css" />
+    <Content Include="css\bootstrap-theme.min.css" />
+    <Content Include="css\bootstrap.css" />
+    <Content Include="css\bootstrap.min.css" />
+    <Content Include="css\checkboxstyle.css" />
+    <Content Include="css\form.css" />
+    <Content Include="css\style-sub.css" />
+    <Content Include="css\style.css" />
     <Content Include="Default.aspx" />
+    <Content Include="images\check2.png" />
+    <Content Include="js\all_checkbox.js" />
+    <Content Include="js\bootstrap.js" />
+    <Content Include="js\bootstrap.min.js" />
+    <Content Include="js\easing.js" />
+    <Content Include="js\jquery.ba-cond.min.js" />
+    <Content Include="js\jquery.easing.1.3.js" />
+    <Content Include="js\jquery.etalage.min.js" />
+    <Content Include="js\jquery.flexisel.js" />
+    <Content Include="js\jquery.jscrollpane.min.js" />
+    <Content Include="js\jquery.min.js" />
+    <Content Include="js\jquery.slitslider.js" />
+    <Content Include="js\jquery.wmuSlider.js" />
+    <Content Include="js\megamenu.js" />
+    <Content Include="js\modernizr.custom.79639.js" />
+    <Content Include="js\move-top.js" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -74,6 +98,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="js\.DS_Store" />
     <None Include="Properties\PublishProfiles\WebCrawler.pubxml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>

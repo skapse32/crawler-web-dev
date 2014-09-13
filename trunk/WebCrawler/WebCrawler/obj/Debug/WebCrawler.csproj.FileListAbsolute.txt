@@ -5,3 +5,10 @@ c:\users\thanhtuan\documents\visual studio 2012\Projects\WebCrawler\WebCrawler\b
 c:\users\thanhtuan\documents\visual studio 2012\Projects\WebCrawler\WebCrawler\obj\Debug\WebCrawler.csprojResolveAssemblyReference.cache
 c:\users\thanhtuan\documents\visual studio 2012\Projects\WebCrawler\WebCrawler\obj\Debug\WebCrawler.dll
 c:\users\thanhtuan\documents\visual studio 2012\Projects\WebCrawler\WebCrawler\obj\Debug\WebCrawler.pdb
+E:\HOC TAP\Jobs\Du an\crawler-web-dev\WebCrawler\WebCrawler\obj\Debug\WebCrawler.csprojResolveAssemblyReference.cache
+E:\HOC TAP\Jobs\Du an\crawler-web-dev\WebCrawler\WebCrawler\obj\Debug\WebCrawler.dll
+E:\HOC TAP\Jobs\Du an\crawler-web-dev\WebCrawler\WebCrawler\bin\WebCrawler.dll
+E:\HOC TAP\Jobs\Du an\crawler-web-dev\WebCrawler\WebCrawler\bin\WebCrawler.pdb
+E:\HOC TAP\Jobs\Du an\crawler-web-dev\WebCrawler\WebCrawler\bin\WebCrawler.Core.dll
+E:\HOC TAP\Jobs\Du an\crawler-web-dev\WebCrawler\WebCrawler\bin\WebCrawler.Core.pdb
+E:\HOC TAP\Jobs\Du an\crawler-web-dev\WebCrawler\WebCrawler\obj\Debug\WebCrawler.pdb
