@@ -46,21 +46,60 @@ namespace WebCrawler.Core
             }
         }
 
+        private bool ExistImage(string link, List<string> list)
+        {
+            if (list.Contains(link))
+            {
+                return true;
+            }
+            return false;
+        }
+
         public List<string> FetchLinksFromSource(string pUrl)
         {
             List<string> links = new List<string>();
-            string regexImgSrc = @"<img[^>]*?data-def-src\s*=\s*[""']?([^'"" >]+?)[ '""][^>]*?>";
-
+            string regexImgSrc = "";
+            if (pUrl.Contains("www.cars.com"))
+            {
+                regexImgSrc = @"<img[^>]*?data-def-src\s*=\s*[""']?([^'"" >]+?)[ '""][^>]*?>";
+            }
+            if (pUrl.Contains("www.autotrader.com"))
+            {
+                regexImgSrc = @"<img[^>]*?src\s*=\s*[""']?([^'"" >]+?)[ '""][^>]*?>";
+            }
             using (var aWebClient = new WebClient())
             {
                 aWebClient.Headers.Add("user-agent", "Mozilla/5.0 (iPhone; U; CPU iPhone OS 4_3_2 like Mac OS X; en-us) AppleWebKit/533.17.9 (KHTML, like Gecko) Version/5.0.2 Mobile/8H7 Safari/6533.18.5");
                 string htmlSource = aWebClient.DownloadString(pUrl);
                 MatchCollection matchesImgSrc = Regex.Matches(htmlSource, regexImgSrc,
                                                                 RegexOptions.IgnoreCase | RegexOptions.Singleline);
-                foreach (Match m in matchesImgSrc)
+
+                if (pUrl.Contains("www.cars.com"))
                 {
-                    string href = m.Groups[1].Value;
-                    links.Add(href);
+                    foreach (Match m in matchesImgSrc)
+                    {
+                        string href = m.Groups[1].Value;
+
+                        if (href.Contains("images.cars.com/phototab"))
+                        {
+                            href.Replace("phototab", "supersized");
+                            if (!ExistImage(href, links))
+                                links.Add(href);
+                        }
+                        if (href.Contains("www.cstatic-images.com/stock/900x600") || href.Contains("www.cstatic-images.com/images"))
+                        {
+                            if (!ExistImage(href, links))
+                                links.Add(href);
+                        }
+                    }
+                }
+                else if (pUrl.Contains("www.autotrader.com"))
+                {
+                    foreach (Match m in matchesImgSrc)
+                    {
+                        string href = m.Groups[1].Value;
+                        links.Add(href);
+                    }
                 }
             }
             return links;

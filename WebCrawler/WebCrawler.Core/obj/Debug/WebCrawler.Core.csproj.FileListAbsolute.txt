@@ -3,3 +3,8 @@ c:\users\thanhtuan\documents\visual studio 2012\Projects\WebCrawler\WebCrawler.C
 c:\users\thanhtuan\documents\visual studio 2012\Projects\WebCrawler\WebCrawler.Core\obj\Debug\WebCrawler.Core.csprojResolveAssemblyReference.cache
 c:\users\thanhtuan\documents\visual studio 2012\Projects\WebCrawler\WebCrawler.Core\obj\Debug\WebCrawler.Core.dll
 c:\users\thanhtuan\documents\visual studio 2012\Projects\WebCrawler\WebCrawler.Core\obj\Debug\WebCrawler.Core.pdb
+E:\HOC TAP\Jobs\Du an\crawler-web-dev\WebCrawler\WebCrawler.Core\bin\Debug\WebCrawler.Core.dll
+E:\HOC TAP\Jobs\Du an\crawler-web-dev\WebCrawler\WebCrawler.Core\bin\Debug\WebCrawler.Core.pdb
+E:\HOC TAP\Jobs\Du an\crawler-web-dev\WebCrawler\WebCrawler.Core\obj\Debug\WebCrawler.Core.csprojResolveAssemblyReference.cache
+E:\HOC TAP\Jobs\Du an\crawler-web-dev\WebCrawler\WebCrawler.Core\obj\Debug\WebCrawler.Core.dll
+E:\HOC TAP\Jobs\Du an\crawler-web-dev\WebCrawler\WebCrawler.Core\obj\Debug\WebCrawler.Core.pdb
