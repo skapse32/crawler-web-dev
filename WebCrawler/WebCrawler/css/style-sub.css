@@ -218,9 +218,7 @@ body{
 	color:#999;
 	font-size:0.85em;
 }
-.btn{
-	padding:8% 0;
-}
+
 .btn a {
 	border:1px solid #ddd;
 	color: #000;
@@ -3569,4 +3567,5 @@ p.cart a:hover {
 .grid_img .css3 img{
 	width:250px;
 	height:170px;
+    cursor: pointer;
 }

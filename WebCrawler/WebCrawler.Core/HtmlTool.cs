@@ -1,8 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
+using System.Drawing.Printing;
 using System.IO;
 using System.Linq;
 using System.Net;
+using System.Net.Mime;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading;
@@ -63,16 +66,17 @@ namespace WebCrawler.Core
             {
                 regexImgSrc = @"<img[^>]*?data-def-src\s*=\s*[""']?([^'"" >]+?)[ '""][^>]*?>";
             }
-            if (pUrl.Contains("www.autotrader.com"))
+            else
             {
                 regexImgSrc = @"<img[^>]*?src\s*=\s*[""']?([^'"" >]+?)[ '""][^>]*?>";
             }
             using (var aWebClient = new WebClient())
             {
-                aWebClient.Headers.Add("user-agent", "Mozilla/5.0 (iPhone; U; CPU iPhone OS 4_3_2 like Mac OS X; en-us) AppleWebKit/533.17.9 (KHTML, like Gecko) Version/5.0.2 Mobile/8H7 Safari/6533.18.5");
+                aWebClient.Headers.Add("user-agent",
+                    "Mozilla/5.0 (iPhone; U; CPU iPhone OS 4_3_2 like Mac OS X; en-us) AppleWebKit/533.17.9 (KHTML, like Gecko) Version/5.0.2 Mobile/8H7 Safari/6533.18.5");
                 string htmlSource = aWebClient.DownloadString(pUrl);
                 MatchCollection matchesImgSrc = Regex.Matches(htmlSource, regexImgSrc,
-                                                                RegexOptions.IgnoreCase | RegexOptions.Singleline);
+                    RegexOptions.IgnoreCase | RegexOptions.Singleline);
 
                 if (pUrl.Contains("www.cars.com"))
                 {
@@ -80,29 +84,86 @@ namespace WebCrawler.Core
                     {
                         string href = m.Groups[1].Value;
 
-                        if (href.Contains("images.cars.com/phototab"))
+                        if (href.Contains("phototab"))
                         {
-                            href.Replace("phototab", "supersized");
+                            href = href.Replace("phototab", "supersized");
                             if (!ExistImage(href, links))
                                 links.Add(href);
                         }
-                        if (href.Contains("www.cstatic-images.com/stock/900x600") || href.Contains("www.cstatic-images.com/images"))
+                        if (href.Contains("www.cstatic-images.com/stock/900x600") ||
+                            href.Contains("www.cstatic-images.com/images"))
                         {
                             if (!ExistImage(href, links))
                                 links.Add(href);
                         }
                     }
                 }
-                else if (pUrl.Contains("www.autotrader.com"))
+                else
                 {
                     foreach (Match m in matchesImgSrc)
                     {
                         string href = m.Groups[1].Value;
-                        links.Add(href);
+                        string tempUrlImage = "";
+                        if (CheckImageSize(pUrl, href, ref tempUrlImage))
+                        {
+                            links.Add(tempUrlImage);
+                        }
                     }
                 }
             }
             return links;
         }
+
+        private bool CheckImageSize(string pUrl, string pUrlImage, ref string tempUrlImage)
+        {
+            bool flag = false;
+            string tempUrl = pUrl.Contains("http://")
+                ? pUrl.Replace("http://", "")
+                : pUrl.Replace("https://", "");
+            string[] tempPath = tempUrl.Split('/');
+            tempUrlImage = pUrlImage;
+            int i = 0;
+            do
+            {
+                try
+                {
+                    WebRequest request = WebRequest.Create(tempUrlImage);
+                    WebResponse response = request.GetResponse();
+                    Image image = Image.FromStream(response.GetResponseStream());
+                    if (image.Height > 150)
+                    {
+                        return true;
+                    }
+                    return false;
+                }
+                catch (Exception ex)
+                {
+                    if (i > tempPath.Length - 1)
+                        return false;
+                    string tmp = "";
+                    for (int j = 0; j <= i; j++)
+                    {
+                        tmp += tempPath[j] + "/";
+                    }
+                    if (pUrlImage.StartsWith("/"))
+                    {
+                        tmp = tmp.Substring(0, tmp.Length - 1);
+
+                        tempUrlImage = pUrl.Contains("http://")
+                            ? "http://" + tmp + tempUrlImage
+                            : "https://" + tmp + tempUrlImage;
+                    }
+                    else
+                    {
+                        tempUrlImage = tmp + tempUrlImage;
+                    }
+                    i++;
+                    flag = false;
+                }
+            } while (!flag);
+
+            return false;
+        }
+       
     }
 }

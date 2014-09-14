@@ -30,8 +30,17 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Iesi.Collections, Version=1.0.1.0, Culture=neutral, PublicKeyToken=aa95f207798dfdb4, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Debug\Iesi.Collections.dll</HintPath>
+    </Reference>
+    <Reference Include="NHibernate, Version=3.3.1.4000, Culture=neutral, PublicKeyToken=aa95f207798dfdb4, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Debug\NHibernate.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -39,9 +48,32 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Business\TrashBusiness.cs" />
+    <Compile Include="Business\ITrashBusiness.cs" />
+    <Compile Include="Business\FolderMediaBusiness.cs" />
+    <Compile Include="Business\IFolderMediaBusiness.cs" />
+    <Compile Include="Business\IUserBusiness.cs" />
+    <Compile Include="Business\UserBusiness.cs" />
+    <Compile Include="Facade\IUserFacade.cs" />
+    <Compile Include="Facade\UserFacade.cs" />
+    <Compile Include="Framework\NHibernateSessionFactory.cs" />
     <Compile Include="FTPExtension.cs" />
     <Compile Include="HtmlTool.cs" />
+    <Compile Include="ImageTool.cs" />
+    <Compile Include="Info\TrashInfo.cs" />
+    <Compile Include="Info\FolderMediaInfo.cs" />
+    <Compile Include="Info\ParameterInfo.cs" />
+    <Compile Include="Info\UserInfo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="InfoMapper\UserInfo.hbm.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="InfoMapper\FolderMediaInfo.hbm.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="InfoMapper\TrashInfo.hbm.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
