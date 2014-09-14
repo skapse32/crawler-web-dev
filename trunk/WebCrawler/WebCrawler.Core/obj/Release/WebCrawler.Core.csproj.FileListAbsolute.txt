@@ -2,3 +2,10 @@ c:\users\thanhtuan\documents\visual studio 2012\Projects\WebCrawler\WebCrawler.C
 c:\users\thanhtuan\documents\visual studio 2012\Projects\WebCrawler\WebCrawler.Core\bin\Release\WebCrawler.Core.pdb
 c:\users\thanhtuan\documents\visual studio 2012\Projects\WebCrawler\WebCrawler.Core\obj\Release\WebCrawler.Core.dll
 c:\users\thanhtuan\documents\visual studio 2012\Projects\WebCrawler\WebCrawler.Core\obj\Release\WebCrawler.Core.pdb
+E:\HOC TAP\Jobs\Du an\crawler-web-dev\WebCrawler\WebCrawler.Core\bin\Release\WebCrawler.Core.dll
+E:\HOC TAP\Jobs\Du an\crawler-web-dev\WebCrawler\WebCrawler.Core\bin\Release\WebCrawler.Core.pdb
+E:\HOC TAP\Jobs\Du an\crawler-web-dev\WebCrawler\WebCrawler.Core\bin\Release\Iesi.Collections.dll
+E:\HOC TAP\Jobs\Du an\crawler-web-dev\WebCrawler\WebCrawler.Core\bin\Release\NHibernate.dll
+E:\HOC TAP\Jobs\Du an\crawler-web-dev\WebCrawler\WebCrawler.Core\obj\Release\WebCrawler.Core.dll
+E:\HOC TAP\Jobs\Du an\crawler-web-dev\WebCrawler\WebCrawler.Core\obj\Release\WebCrawler.Core.pdb
+E:\HOC TAP\Jobs\Du an\crawler-web-dev\WebCrawler\WebCrawler.Core\obj\Release\WebCrawler.Core.csprojResolveAssemblyReference.cache
