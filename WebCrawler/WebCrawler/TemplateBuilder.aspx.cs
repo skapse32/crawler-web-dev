@@ -13,12 +13,14 @@ namespace WebCrawler
 {
     public partial class TemplateBuilder : System.Web.UI.Page
     {
+        List<string> LinkImage = new List<string>();
+        private int Index = 0;
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (Session["UserInfo"] == null)
-            {
-                Response.Redirect("Login.aspx?continue=" + Request.RawUrl);
-            }
+            //if (Session["UserInfo"] == null)
+            //{
+            //    Response.Redirect("Login.aspx?continue=" + Request.RawUrl);
+            //}
         }
 
         public void getImageFromUrl(string pUrl)
@@ -85,6 +87,18 @@ namespace WebCrawler
             string s = aImageTool.CropAndAddTitle(image, "test", Server.MapPath("~/Upload"), new Rectangle(x, y, w, h),
                 title, fileLogo);
             imgResult.Text += "";
+        }
+
+        protected void btnNext_OnClick(object sender, EventArgs e)
+        {
+            
+            if (LinkImage.Count == 0)
+            {
+                var temp = imagelink.Value.Split('|');
+                LinkImage.AddRange(temp);
+            }
+            imgContent.ImageUrl = LinkImage[Index];
+            Index++;
         }
     }
 }

@@ -32,7 +32,7 @@
         <!-- fieldsets -->
         <fieldset>
             <h2 class="fs-title">Getting images</h2>
-            <input type="button" name="next" class="next action-button" value="Next" />
+            <input type="button" id="first" name="next" class="next action-button" value="Next" />
             <asp:UpdatePanel runat="server" ID="UpdatePanelStep1">
                 <ContentTemplate>
                     <asp:UpdateProgress ID="UpdateProgressStep1" runat="server">
@@ -75,11 +75,11 @@
                     </asp:UpdateProgress>
                     <div class="float-lt show-image ">
                         <div class="image-content">
-                            <asp:Image runat="server" ID="imgContent" ImageUrl="http://images.autotrader.com/scaler/620/420/cms/images/cars/dodge/durango/2012/12-durango/228936.jpg" />
+                            <asp:Image runat="server" ID="imgContent" />
                         </div>
                         <div>
                             <asp:Button runat="server" Text="Crop and Additional Text" CssClass="btn action-button" Width="180px" ID="btnCropAndSave" OnClick="btnCropAndSave_OnClick" />
-                            <input type="button" class="action-button" value="Next image" />
+                            <asp:Button runat="server" class="action-button" value="Next image" ID="btnNext" OnClick="btnNext_OnClick"/>
                         </div>
                     </div>
                     <div class="float-lt options-image">
@@ -142,6 +142,7 @@
             <input type="button" name="previous" class="previous action-button" value="Previous" />
             <input type="submit" name="submit" class="submit action-button" value="Submit" />
         </fieldset>
+        <input type="hidden" id="imagelink" runat="server"/>
     </form>
 
  
@@ -155,6 +156,8 @@
             var animating; //flag to prevent quick multi-click glitches
 
             $(".next").click(function () {
+                if ($(this).attr('id') == 'first')
+                    getValueUsingClass();
                 if (animating) return false;
                 animating = true;
 
@@ -309,6 +312,11 @@
             $(".second:checked").each(function () {
                 chkArray.push($(this).val());
             });
+
+            var selected;
+            selected = chkArray.join("|");
+            console.log(selected);
+            $('#<%= imagelink.ClientID%>').val(selected);
         }
         function SelectCropArea(c) {
             $('#<%=X.ClientID%>').val(parseInt(c.x));
@@ -326,6 +334,7 @@
                 });
             });
         });
+
 
     </script>
 </body>
