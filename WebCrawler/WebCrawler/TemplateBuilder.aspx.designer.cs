@@ -76,6 +76,15 @@ namespace WebCrawler {
         protected global::System.Web.UI.WebControls.Button btnGetImage;
         
         /// <summary>
+        /// btnClear control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnClear;
+        
+        /// <summary>
         /// lblResult control.
         /// </summary>
         /// <remarks>
@@ -103,13 +112,22 @@ namespace WebCrawler {
         protected global::System.Web.UI.UpdateProgress UpdateProgressStep2;
         
         /// <summary>
-        /// imgContent control.
+        /// btnPrview control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Image imgContent;
+        protected global::System.Web.UI.WebControls.Button btnPrview;
+        
+        /// <summary>
+        /// btnNext control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnNext;
         
         /// <summary>
         /// btnCropAndSave control.
@@ -121,13 +139,13 @@ namespace WebCrawler {
         protected global::System.Web.UI.WebControls.Button btnCropAndSave;
         
         /// <summary>
-        /// btnNext control.
+        /// imgContent control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnNext;
+        protected global::System.Web.UI.WebControls.Image imgContent;
         
         /// <summary>
         /// imgResult control.

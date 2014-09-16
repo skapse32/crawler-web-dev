@@ -3,18 +3,18 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Text;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using WebCrawler.Core;
+using WebCrawler.Core.Info;
 using Image = System.Drawing.Image;
 
 namespace WebCrawler
 {
     public partial class TemplateBuilder : System.Web.UI.Page
     {
-        List<string> LinkImage = new List<string>();
-        private int Index = 0;
         protected void Page_Load(object sender, EventArgs e)
         {
             //if (Session["UserInfo"] == null)
@@ -67,6 +67,7 @@ namespace WebCrawler
 
         protected void btnCropAndSave_OnClick(object sender, EventArgs e)
         {
+            string filename = DateTime.Now.ToShortDateString().Replace("/", "") + Session["Index"].ToString();
             var aImageTool = new ImageTool();
             Stream fileLogo = null;
             string title = txtText.Value;
@@ -84,21 +85,86 @@ namespace WebCrawler
             W.Value = "0";
             int h = H.Value.Trim() != "" ? int.Parse(H.Value) : image.Height;
             H.Value = "0";
-            string s = aImageTool.CropAndAddTitle(image, "test", Server.MapPath("~/Upload"), new Rectangle(x, y, w, h),
+            string linkImageCrop = aImageTool.CropAndAddTitle(image, filename, Server.MapPath("~/Upload"), new Rectangle(x, y, w, h),
                 title, fileLogo);
-            imgResult.Text += "";
+            filename = "Upload/" + filename + ".jpg";
+            imgContent.ImageUrl = filename;
+            StringBuilder sb = new StringBuilder();
+            sb.Append(" <div class='ns-box ns-other ns-effect-thumbslider ns-type-notice ns-hide'>");
+            sb.Append("<div class='ns-box-inner'>");
+            sb.Append("<div class='ns-thumb'>");
+            sb.Append("<img src='" + filename + "'></div>");
+            sb.Append("<div class='ns-content'><p>" + txtTitle.Value + "</p> </div> </div>");
+            sb.Append("<span class='ns-close'></span>");
+            sb.Append("</div>");
+            imgResult.Text += sb.ToString();
+            var lImageLink = (Dictionary<int, ImagesInfo>)Session["ImageLink"];
+            var aImageInfo = new ImagesInfo();
+            lImageLink.TryGetValue((int) Session["Index"], out aImageInfo);
+            aImageInfo.ImagesLink = filename;
+            aImageInfo.Title = txtTitle.Value;
         }
 
         protected void btnNext_OnClick(object sender, EventArgs e)
         {
-            
-            if (LinkImage.Count == 0)
+            if (Session["ImageLink"] == null)
             {
-                var temp = imagelink.Value.Split('|');
-                LinkImage.AddRange(temp);
+                Dictionary<int, ImagesInfo> lImageLink = new Dictionary<int, ImagesInfo>();
+                var lImageChoose = imagelink.Value.Split('|');
+                for (int i = 1; i < lImageChoose.Length; i++)
+                {
+                    lImageLink.Add(i, new ImagesInfo() {ImagesLink = lImageChoose[i]});
+                }
+                Session["Index"] = 0;
+                Session["ImageLink"] = lImageLink;
             }
-            imgContent.ImageUrl = LinkImage[Index];
-            Index++;
+
+            var aImageLink = (Dictionary<int, ImagesInfo>) Session["ImageLink"];
+            var aImageInfo = new ImagesInfo();
+            if (aImageLink.Count - 1 > (int)Session["Index"])
+            {
+                Session["Index"] = (int)Session["Index"] + 1;
+            }
+            else
+            {
+                Session["Index"] = 0;
+            }
+            aImageLink.TryGetValue((int)Session["Index"], out aImageInfo);
+            imgContent.ImageUrl = aImageInfo.ImagesLink;
+        }
+
+        protected void btnPrview_OnClick(object sender, EventArgs e)
+        {
+            if (Session["ImageLink"] == null)
+            {
+                Dictionary<int, ImagesInfo> lImageLink = new Dictionary<int, ImagesInfo>();
+                var lImageChoose = imagelink.Value.Split('|');
+                for (int i = 1; i < lImageChoose.Length; i++)
+                {
+                    lImageLink.Add(i, new ImagesInfo() {ImagesLink = lImageChoose[i]});
+                }
+                Session["Index"] = 0;
+                Session["ImageLink"] = lImageLink;
+            }
+             var aImageLink = (Dictionary<int, ImagesInfo>) Session["ImageLink"];
+            var aImageInfo = new ImagesInfo();
+            if ((int) Session["Index"] == 0)
+            {
+                Session["Index"] = aImageLink.Count - 1;
+            }
+            else
+            {
+                Session["Index"] = (int) Session["Index"] - 1;
+            }
+            aImageLink.TryGetValue((int)Session["Index"], out aImageInfo);
+            imgContent.ImageUrl = aImageInfo.ImagesLink;
+        }
+
+        protected void btnClear_OnClick(object sender, EventArgs e)
+        {
+            Session["Index"] = 0;
+            Session["ImageLink"] = null;
+            imgResult.Text = "";
         }
     }
 }

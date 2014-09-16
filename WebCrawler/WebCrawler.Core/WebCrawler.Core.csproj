@@ -60,6 +60,7 @@
     <Compile Include="FTPExtension.cs" />
     <Compile Include="HtmlTool.cs" />
     <Compile Include="ImageTool.cs" />
+    <Compile Include="Info\ImagesInfo.cs" />
     <Compile Include="Info\TrashInfo.cs" />
     <Compile Include="Info\FolderMediaInfo.cs" />
     <Compile Include="Info\ParameterInfo.cs" />
