@@ -61,6 +61,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\css\checkboxstyle.css" />
+    <Content Include="Content\css\jcrop.css" />
     <Content Include="Content\css\jquery.Jcrop.css" />
     <Content Include="Content\css\style-sub.css" />
     <Content Include="Content\css\style.css" />
@@ -71,6 +72,7 @@
     <Content Include="Content\images\glyphicons-halflings-white.png" />
     <Content Include="Content\images\glyphicons-halflings.png" />
     <Content Include="Content\js\all_checkbox.js" />
+    <Content Include="Content\js\crop.js" />
     <Content Include="Content\js\jquery-1.9.1.min.js" />
     <Content Include="Content\js\jquery.easing.min.js" />
     <Content Include="Content\js\jquery.Jcrop.js" />
@@ -112,6 +114,7 @@
     <Content Include="js\move-top.js" />
     <Content Include="Login.aspx" />
     <Content Include="TemplateBuilder.aspx" />
+    <Content Include="Upload\91620141.jpg" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -139,7 +142,6 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="js\.DS_Store" />
     <None Include="Properties\PublishProfiles\WebCrawler.pubxml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -154,9 +156,7 @@
       <Name>WebCrawler.Core</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Upload\" />
-  </ItemGroup>
+  <ItemGroup />
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

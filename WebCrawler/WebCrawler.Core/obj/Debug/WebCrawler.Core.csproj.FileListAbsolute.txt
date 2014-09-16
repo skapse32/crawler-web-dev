@@ -10,6 +10,6 @@ E:\HOC TAP\Jobs\Du an\crawler-web-dev\WebCrawler\WebCrawler.Core\obj\Debug\WebCr
 E:\HOC TAP\Jobs\Du an\crawler-web-dev\WebCrawler\WebCrawler.Core\obj\Debug\WebCrawler.Core.pdb
 D:\Job\break_time\crawler-web-dev\WebCrawler\WebCrawler.Core\bin\Debug\WebCrawler.Core.dll
 D:\Job\break_time\crawler-web-dev\WebCrawler\WebCrawler.Core\bin\Debug\WebCrawler.Core.pdb
-D:\Job\break_time\crawler-web-dev\WebCrawler\WebCrawler.Core\obj\Debug\WebCrawler.Core.csprojResolveAssemblyReference.cache
 D:\Job\break_time\crawler-web-dev\WebCrawler\WebCrawler.Core\obj\Debug\WebCrawler.Core.dll
 D:\Job\break_time\crawler-web-dev\WebCrawler\WebCrawler.Core\obj\Debug\WebCrawler.Core.pdb
+D:\Job\break_time\crawler-web-dev\WebCrawler\WebCrawler.Core\obj\Debug\WebCrawler.Core.csprojResolveAssemblyReference.cache

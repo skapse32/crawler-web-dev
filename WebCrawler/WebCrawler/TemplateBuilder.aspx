@@ -9,6 +9,7 @@
     <link href="Content/css/style-sub.css" rel="stylesheet" />
     <link href="Content/css/style.css" rel="stylesheet" />
     <link href="Content/css/checkboxstyle.css" rel="stylesheet" />
+    <link href="Content/css/jcrop.css" rel="stylesheet" />
     <link href="Content/css/jquery.Jcrop.css" rel="stylesheet" />
     <script src="Content/js/jquery.min.js"></script>
     <script src="Content/js/jquery.Jcrop.js"></script>
@@ -154,7 +155,7 @@
                     <div style="float: left;">
                         <input class="second" id="selectall" name="check" type="checkbox">
                         <label class="label2" for="selectall">Select all</label>
-                        <asp:Button type="button" class="action-button" ID="btnClear" OnClick="btnClear_OnClick" Text="Get Images" runat="server" />
+                        <asp:Button type="button" class="action-button" ID="btnClear" OnClick="btnClear_OnClick" OnClientClick="return ValidateSelected()" Text="Get Images" runat="server" />
                     </div>
                     <div class="clear"></div>
 
@@ -179,14 +180,15 @@
                         </ProgressTemplate>
                     </asp:UpdateProgress>
                     <div class="float-lt show-image ">
+                        
+                        <div class="image-content">
+                            <asp:Image runat="server" ID="imgContent" />
+                        </div>
                         <div>
                             <asp:Button runat="server" class="action-button" Text="Prev image" ID="btnPrview" OnClick="btnPrview_OnClick" />
                             <asp:Button runat="server" class="action-button" Text="Next image" ID="btnNext" OnClick="btnNext_OnClick" />
                             <asp:Button runat="server" Text="Crop and Additional Text" CssClass="btn action-button" Width="180px" ID="btnCropAndSave" OnClick="btnCropAndSave_OnClick" />
 
-                        </div>
-                        <div class="image-content">
-                            <asp:Image runat="server" ID="imgContent" />
                         </div>
                     </div>
                     <div class="float-lt options-image">
@@ -213,6 +215,8 @@
                     <div class="hidden">
                         <asp:HiddenField ID="X" runat="server" />
                         <asp:HiddenField ID="Y" runat="server" />
+                        <asp:HiddenField ID="X2" runat="server" />
+                        <asp:HiddenField ID="Y2" runat="server" />
                         <asp:HiddenField ID="W" runat="server" />
                         <asp:HiddenField ID="H" runat="server" />
                     </div>
@@ -430,21 +434,34 @@
         }
         function SelectCropArea(c) {
             $('#<%=X.ClientID%>').val(parseInt(c.x));
+            $('#<%=Y2.ClientID%>').val(parseInt(c.y2));
+            $('#<%=X2.ClientID%>').val(parseInt(c.x2));
             $('#<%=Y.ClientID%>').val(parseInt(c.y));
             $('#<%=W.ClientID%>').val(parseInt(c.w));
             $('#<%=H.ClientID%>').val(parseInt(c.h));
         }
         $(document).ready(function () {
             $('#<%= imgContent.ClientID%>').Jcrop({
+                onChange: SelectCropArea,
                 onSelect: SelectCropArea
             });
+            // Patch for IE to force "overflow: auto;"
+          
             Sys.WebForms.PageRequestManager.getInstance().add_endRequest(function () {
                 $('#<%= imgContent.ClientID%>').Jcrop({
+                    onChange: SelectCropArea,
                     onSelect: SelectCropArea
                 });
+                
             });
         });
-
+        function ValidateSelected() {
+            if (document.getElementById("<%=W.ClientID%>").value == "" || document.getElementById("<%=W.ClientID%>").value == "0"
+                || document.getElementById("<%=H.ClientID%>").value == "" || document.getElementById("<%=H.ClientID%>").value == "0") {
+                alert("No area to crop was selected");
+                return false;
+            }
+        }
 
     </script>
 </body>

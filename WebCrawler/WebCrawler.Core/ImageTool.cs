@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Drawing.Drawing2D;
 using System.Drawing.Imaging;
 using System.IO;
 using System.Linq;
@@ -11,117 +12,110 @@ namespace WebCrawler.Core
 {
    public class ImageTool
     {
-        public string CropImage(string fileName, string dirsaveImage, int x, int y, int w, int h)
-        {
-            string filePath = Path.Combine(dirsaveImage, fileName);
-            string cropFileName = "";
-            string cropFilePath = "";
-            if (File.Exists(filePath))
+       public string CropImage(Image img, string croppedFileName, string originalFile, 
+           string dirsaveImage, Rectangle pRectangle, string pTitle = "", Stream pLogo = null)
+       {
+           string extension = "";
+            using (Bitmap _bitmap = new Bitmap(pRectangle.Width, pRectangle.Height))
             {
-                System.Drawing.Image orgImg = System.Drawing.Image.FromFile(filePath);
-                Rectangle aRectangle = new Rectangle(x, y, w, h);
-                try
+                _bitmap.SetResolution(img.HorizontalResolution, img.VerticalResolution);
+                using (Graphics _graphic = Graphics.FromImage(_bitmap))
                 {
-                    Bitmap bitMap = new Bitmap(aRectangle.Width, aRectangle.Height);
-                    using (Graphics g = Graphics.FromImage(bitMap))
+                    _graphic.InterpolationMode = InterpolationMode.HighQualityBicubic;
+                    _graphic.SmoothingMode = SmoothingMode.HighQuality;
+                    _graphic.PixelOffsetMode = PixelOffsetMode.HighQuality;
+                    _graphic.CompositingQuality = CompositingQuality.HighQuality;
+                    _graphic.DrawImage(img, 0, 0, pRectangle.Width, pRectangle.Height);
+                    _graphic.DrawImage(img, new Rectangle(0, 0, pRectangle.Width, pRectangle.Height), 
+                        pRectangle, GraphicsUnit.Pixel);
+
+                    if (pTitle.Trim() != "")
                     {
-                        g.DrawImage(orgImg, new Rectangle(0, 0, bitMap.Width, bitMap.Height), aRectangle,
-                            GraphicsUnit.Pixel);
+                        // For Transparent Watermark Text 
+                        int opacity = 255; // range from 0 to 255
+
+                        //SolidBrush brush = new SolidBrush(Color.Red);
+                        SolidBrush brush = new SolidBrush(Color.FromArgb(opacity, Color.White));
+                        Font font = new Font("Arial", 16);
+                        _graphic.DrawString(pTitle, font, brush, new PointF(0, 10));
                     }
-                    cropFileName = "crop_" + fileName;
-                    cropFilePath = Path.Combine(dirsaveImage, cropFileName);
-                    bitMap.Save(cropFilePath);
-                    return cropFilePath;
-                }
-                catch
-                {
-                }
-            }
-            return cropFilePath;
-        }
 
-        public void addTitle(string pfilename, string psavePath, Stream file, string ptitle = "", Stream pLogo = null)
-        {
-            try
-            {
-                string fileName = Guid.NewGuid() + Path.GetExtension(pfilename);
-                Image upImage = Image.FromStream(file);
-                Image logoImage = Image.FromStream(pLogo);
-
-                using (Graphics g = Graphics.FromImage(upImage))
-                {
-
-                    // For Transparent Watermark Text 
-                    int opacity = 128; // range from 0 to 255
-
-                    //SolidBrush brush = new SolidBrush(Color.Red);
-                    SolidBrush brush = new SolidBrush(Color.FromArgb(opacity, Color.Red));
-                    Font font = new Font("Arial", 16);
-                    if (ptitle.Trim() != "")
-                    {
-                        g.DrawString(ptitle, font, brush, new PointF(0, 0));
-                    }
                     if (pLogo != null)
                     {
-                        g.DrawImage(logoImage, new Point(upImage.Width - logoImage.Width - 10, 10));
+                        Image logoImage = Image.FromStream(pLogo);
+                        logoImage = resizeImage(logoImage, new Size(50, 20));
+                        _graphic.DrawImage(logoImage,
+                            new Point(pRectangle.Width - logoImage.Width - 10, pRectangle.Height - logoImage.Height));
                     }
-                    upImage.Save(psavePath);
+                    
+                    extension = Path.GetExtension(originalFile);
+
+
+                    // If the image is a gif file, change it into png
+                    if (extension.EndsWith("gif", StringComparison.OrdinalIgnoreCase))
+                    {
+                        extension = ".png";
+                    }
+
+                    string newFullPathName = string.Concat(dirsaveImage, croppedFileName, extension);
+
+                    using (EncoderParameters encoderParameters = new EncoderParameters(1))
+                    {
+                        encoderParameters.Param[0] = new EncoderParameter(System.Drawing.Imaging.Encoder.Quality, 100L);
+                        _bitmap.Save(newFullPathName, GetImageCodec(extension), encoderParameters);
+                    }
                 }
             }
-            catch (Exception ex)
-            {
-                throw  new Exception(ex.Message);
-            }
-            
-        }
+           return string.Concat(croppedFileName, extension);
+       }
 
-       public string CropAndAddTitle(Image orgImg, string filename, string dirsaveImage, Rectangle pRectangle,
-           string ptitle = "", Stream pLogo = null)
+       /// <summary>
+       /// Find the right codec
+       /// </summary>
+       /// <param name="extension"></param>
+       /// <returns></returns>
+       private ImageCodecInfo GetImageCodec(string extension)
        {
-           string cropFilePath = "";
-           try
+           extension = extension.ToUpperInvariant();
+           ImageCodecInfo[] codecs = ImageCodecInfo.GetImageEncoders();
+           foreach (ImageCodecInfo codec in codecs)
            {
-               try
+               if (codec.FilenameExtension.Contains(extension))
                {
-                   Bitmap bitMap = new Bitmap(pRectangle.Width, pRectangle.Height);
-                   using (Graphics g = Graphics.FromImage(bitMap))
-                   {
-                       g.DrawImage(orgImg, new Rectangle(0, 0, bitMap.Width, bitMap.Height), pRectangle,
-                           GraphicsUnit.Pixel);
-
-                       if (ptitle.Trim() != "")
-                       {
-                           // For Transparent Watermark Text 
-                           int opacity = 255; // range from 0 to 255
-
-                           //SolidBrush brush = new SolidBrush(Color.Red);
-                           SolidBrush brush = new SolidBrush(Color.FromArgb(opacity, Color.White));
-                           Font font = new Font("Arial", 16);
-                           g.DrawString(ptitle, font, brush, new PointF(0, 10));
-                       }
-
-                       if (pLogo != null)
-                       {
-                           Image logoImage = Image.FromStream(pLogo);
-                           g.DrawImage(logoImage,
-                               new Point(pRectangle.Width - logoImage.Width - 10, pRectangle.Height - logoImage.Height));
-                       }
-                   }
-                   cropFilePath = Path.Combine(dirsaveImage, filename + ".jpg");
-                   bitMap.Save(cropFilePath, ImageFormat.Jpeg);
-                   return cropFilePath;
-               }
-               catch
-               {
+                   return codec;
                }
            }
-           catch (Exception ex)
-           {
+           return codecs[1];
+       }
 
-               throw new Exception(ex.Message);
-           }
+       private Image resizeImage(Image imgToResize, Size size)
+       {
+           int sourceWidth = imgToResize.Width;
+           int sourceHeight = imgToResize.Height;
 
-           return cropFilePath;
+           float nPercent = 0;
+           float nPercentW = 0;
+           float nPercentH = 0;
+
+           nPercentW = ((float)size.Width / (float)sourceWidth);
+           nPercentH = ((float)size.Height / (float)sourceHeight);
+
+           if (nPercentH < nPercentW)
+               nPercent = nPercentH;
+           else
+               nPercent = nPercentW;
+
+           int destWidth = (int)(sourceWidth * nPercent);
+           int destHeight = (int)(sourceHeight * nPercent);
+
+           Bitmap b = new Bitmap(destWidth, destHeight);
+           Graphics g = Graphics.FromImage((Image)b);
+           g.InterpolationMode = InterpolationMode.HighQualityBicubic;
+
+           g.DrawImage(imgToResize, 0, 0, destWidth, destHeight);
+           g.Dispose();
+
+           return (Image)b;
        }
 
        public System.Drawing.Image DownloadImageFromUrl(string imageUrl)

@@ -112,6 +112,15 @@ namespace WebCrawler {
         protected global::System.Web.UI.UpdateProgress UpdateProgressStep2;
         
         /// <summary>
+        /// imgContent control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Image imgContent;
+        
+        /// <summary>
         /// btnPrview control.
         /// </summary>
         /// <remarks>
@@ -137,15 +146,6 @@ namespace WebCrawler {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnCropAndSave;
-        
-        /// <summary>
-        /// imgContent control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Image imgContent;
         
         /// <summary>
         /// imgResult control.
@@ -200,6 +200,24 @@ namespace WebCrawler {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.HiddenField Y;
+        
+        /// <summary>
+        /// X2 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField X2;
+        
+        /// <summary>
+        /// Y2 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField Y2;
         
         /// <summary>
         /// W control.
