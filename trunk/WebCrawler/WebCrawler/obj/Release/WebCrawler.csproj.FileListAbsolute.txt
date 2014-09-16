@@ -14,3 +14,12 @@ E:\HOC TAP\Jobs\Du an\crawler-web-dev\WebCrawler\WebCrawler\bin\WebCrawler.Core.
 E:\HOC TAP\Jobs\Du an\crawler-web-dev\WebCrawler\WebCrawler\obj\Release\WebCrawler.csprojResolveAssemblyReference.cache
 E:\HOC TAP\Jobs\Du an\crawler-web-dev\WebCrawler\WebCrawler\obj\Release\WebCrawler.dll
 E:\HOC TAP\Jobs\Du an\crawler-web-dev\WebCrawler\WebCrawler\obj\Release\WebCrawler.pdb
+D:\Job\break_time\crawler-web-dev\WebCrawler\WebCrawler\bin\WebCrawler.dll
+D:\Job\break_time\crawler-web-dev\WebCrawler\WebCrawler\bin\WebCrawler.pdb
+D:\Job\break_time\crawler-web-dev\WebCrawler\WebCrawler\bin\WebCrawler.Core.dll
+D:\Job\break_time\crawler-web-dev\WebCrawler\WebCrawler\bin\NHibernate.dll
+D:\Job\break_time\crawler-web-dev\WebCrawler\WebCrawler\bin\Iesi.Collections.dll
+D:\Job\break_time\crawler-web-dev\WebCrawler\WebCrawler\bin\WebCrawler.Core.pdb
+D:\Job\break_time\crawler-web-dev\WebCrawler\WebCrawler\obj\Release\WebCrawler.csprojResolveAssemblyReference.cache
+D:\Job\break_time\crawler-web-dev\WebCrawler\WebCrawler\obj\Release\WebCrawler.dll
+D:\Job\break_time\crawler-web-dev\WebCrawler\WebCrawler\obj\Release\WebCrawler.pdb

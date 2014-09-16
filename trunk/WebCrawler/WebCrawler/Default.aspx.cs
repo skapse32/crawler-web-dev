@@ -84,9 +84,9 @@ namespace WebCrawler
             W.Value = "0";
             int h = H.Value.Trim() != "" ? int.Parse(H.Value) : image.Height;
             H.Value = "0";
-            string s = aImageTool.CropAndAddTitle(image, "test", Server.MapPath("~/Upload"), new Rectangle(x, y, w, h),
-                title, fileLogo);
-            imgResult.Text += "";
+            //string s = aImageTool.CropAndAddTitle(image, "test", Server.MapPath("~/Upload"), new Rectangle(x, y, w, h),
+            //    title, fileLogo);
+            //imgResult.Text += "";
         }
     }
 

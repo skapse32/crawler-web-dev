@@ -10,17 +10,182 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     <TimeStampOfAssociatedLegacyPublishXmlFile />
   </PropertyGroup>
   <ItemGroup>
+    <File Include="bin/FacebookClient.dll">
+      <publishTime>09/15/2014 16:44:52</publishTime>
+    </File>
+    <File Include="bin/Iesi.Collections.dll">
+      <publishTime>09/15/2014 16:44:50</publishTime>
+    </File>
+    <File Include="bin/NHibernate.dll">
+      <publishTime>09/15/2014 16:44:50</publishTime>
+    </File>
     <File Include="bin/WebCrawler.Core.dll">
-      <publishTime>09/12/2014 13:07:32</publishTime>
+      <publishTime>09/16/2014 11:09:28</publishTime>
     </File>
     <File Include="bin/WebCrawler.dll">
-      <publishTime>09/12/2014 13:07:33</publishTime>
+      <publishTime>09/16/2014 11:09:28</publishTime>
+    </File>
+    <File Include="Content/css/checkboxstyle.css">
+      <publishTime>09/15/2014 16:44:52</publishTime>
+    </File>
+    <File Include="Content/css/jquery.Jcrop.css">
+      <publishTime>09/15/2014 16:44:52</publishTime>
+    </File>
+    <File Include="Content/css/style-sub.css">
+      <publishTime>09/15/2014 16:44:52</publishTime>
+    </File>
+    <File Include="Content/css/style.css">
+      <publishTime>09/16/2014 09:54:57</publishTime>
+    </File>
+    <File Include="Content/images/02.jpg">
+      <publishTime>09/15/2014 16:44:52</publishTime>
+    </File>
+    <File Include="Content/images/ajax-loader.gif">
+      <publishTime>09/15/2014 16:44:52</publishTime>
+    </File>
+    <File Include="Content/images/check2.png">
+      <publishTime>09/15/2014 16:44:52</publishTime>
+    </File>
+    <File Include="Content/images/checkboxstyle.css">
+      <publishTime>09/15/2014 16:44:52</publishTime>
+    </File>
+    <File Include="Content/images/glyphicons-halflings-white.png">
+      <publishTime>09/15/2014 16:44:52</publishTime>
+    </File>
+    <File Include="Content/images/glyphicons-halflings.png">
+      <publishTime>09/15/2014 16:44:52</publishTime>
+    </File>
+    <File Include="Content/js/all_checkbox.js">
+      <publishTime>09/15/2014 17:38:36</publishTime>
+    </File>
+    <File Include="Content/js/jquery-1.9.1.min.js">
+      <publishTime>09/15/2014 16:44:52</publishTime>
+    </File>
+    <File Include="Content/js/jquery.easing.min.js">
+      <publishTime>09/15/2014 16:44:52</publishTime>
+    </File>
+    <File Include="Content/js/jquery.Jcrop.js">
+      <publishTime>09/15/2014 16:44:52</publishTime>
+    </File>
+    <File Include="Content/js/jquery.min.js">
+      <publishTime>09/15/2014 16:44:52</publishTime>
+    </File>
+    <File Include="css/bootstrap-responsive.css">
+      <publishTime>09/15/2014 16:44:50</publishTime>
+    </File>
+    <File Include="css/bootstrap-responsive.min.css">
+      <publishTime>09/15/2014 16:44:50</publishTime>
+    </File>
+    <File Include="css/bootstrap.css">
+      <publishTime>09/15/2014 16:44:50</publishTime>
+    </File>
+    <File Include="css/bootstrap.min.css">
+      <publishTime>09/15/2014 16:44:50</publishTime>
+    </File>
+    <File Include="css/checkboxstyle.css">
+      <publishTime>09/15/2014 16:44:51</publishTime>
+    </File>
+    <File Include="css/form.css">
+      <publishTime>09/15/2014 16:44:50</publishTime>
+    </File>
+    <File Include="css/jquery.Jcrop.css">
+      <publishTime>09/15/2014 16:44:50</publishTime>
+    </File>
+    <File Include="css/signin.css">
+      <publishTime>09/15/2014 16:44:51</publishTime>
+    </File>
+    <File Include="css/style-sub.css">
+      <publishTime>09/16/2014 09:54:57</publishTime>
+    </File>
+    <File Include="css/style.css">
+      <publishTime>09/16/2014 09:54:57</publishTime>
     </File>
     <File Include="Default.aspx">
-      <publishTime>09/12/2014 13:06:33</publishTime>
+      <publishTime>09/15/2014 16:44:51</publishTime>
+    </File>
+    <File Include="images/02.jpg">
+      <publishTime>09/15/2014 16:44:51</publishTime>
+    </File>
+    <File Include="images/ajax-loader.gif">
+      <publishTime>09/15/2014 16:44:51</publishTime>
+    </File>
+    <File Include="images/check2.png">
+      <publishTime>09/15/2014 16:44:51</publishTime>
+    </File>
+    <File Include="images/glyphicons-halflings-white.png">
+      <publishTime>09/15/2014 16:44:51</publishTime>
+    </File>
+    <File Include="images/glyphicons-halflings.png">
+      <publishTime>09/15/2014 16:44:51</publishTime>
+    </File>
+    <File Include="js/all_checkbox.js">
+      <publishTime>09/15/2014 16:44:53</publishTime>
+    </File>
+    <File Include="js/bootstrap.js">
+      <publishTime>09/15/2014 16:44:53</publishTime>
+    </File>
+    <File Include="js/bootstrap.min.js">
+      <publishTime>09/15/2014 16:44:53</publishTime>
+    </File>
+    <File Include="js/easing.js">
+      <publishTime>09/15/2014 16:44:53</publishTime>
+    </File>
+    <File Include="js/ie-emulation-modes-warning.js">
+      <publishTime>09/15/2014 16:44:53</publishTime>
+    </File>
+    <File Include="js/ie10-viewport-bug-workaround.js">
+      <publishTime>09/15/2014 16:44:53</publishTime>
+    </File>
+    <File Include="js/jquery.ba-cond.min.js">
+      <publishTime>09/15/2014 16:44:53</publishTime>
+    </File>
+    <File Include="js/jquery.easing.1.3.js">
+      <publishTime>09/15/2014 16:44:53</publishTime>
+    </File>
+    <File Include="js/jquery.etalage.min.js">
+      <publishTime>09/15/2014 16:44:53</publishTime>
+    </File>
+    <File Include="js/jquery.flexisel.js">
+      <publishTime>09/15/2014 16:44:53</publishTime>
+    </File>
+    <File Include="js/jquery.Jcrop.js">
+      <publishTime>09/15/2014 16:44:53</publishTime>
+    </File>
+    <File Include="js/jquery.jscrollpane.min.js">
+      <publishTime>09/15/2014 16:44:53</publishTime>
+    </File>
+    <File Include="js/jquery.min.js">
+      <publishTime>09/15/2014 16:44:53</publishTime>
+    </File>
+    <File Include="js/jquery.processPanel.packed.updated2.js">
+      <publishTime>09/15/2014 16:44:53</publishTime>
+    </File>
+    <File Include="js/jquery.slitslider.js">
+      <publishTime>09/15/2014 16:44:53</publishTime>
+    </File>
+    <File Include="js/jquery.wmuSlider.js">
+      <publishTime>09/15/2014 16:44:53</publishTime>
+    </File>
+    <File Include="js/megamenu.js">
+      <publishTime>09/15/2014 16:44:53</publishTime>
+    </File>
+    <File Include="js/modernizr.custom.79639.js">
+      <publishTime>09/15/2014 16:44:53</publishTime>
+    </File>
+    <File Include="js/move-top.js">
+      <publishTime>09/15/2014 16:44:53</publishTime>
+    </File>
+    <File Include="Login.aspx">
+      <publishTime>09/15/2014 16:44:50</publishTime>
+    </File>
+    <File Include="TemplateBuilder.aspx">
+      <publishTime>09/16/2014 11:09:22</publishTime>
+    </File>
+    <File Include="Upload/91620141.jpg">
+      <publishTime>09/16/2014 10:47:22</publishTime>
     </File>
     <File Include="Web.config">
-      <publishTime>09/12/2014 13:07:33</publishTime>
+      <publishTime>09/16/2014 11:09:28</publishTime>
     </File>
   </ItemGroup>
 </Project>

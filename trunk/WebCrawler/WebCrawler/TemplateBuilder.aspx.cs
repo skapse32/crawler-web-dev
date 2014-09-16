@@ -67,7 +67,7 @@ namespace WebCrawler
 
         protected void btnCropAndSave_OnClick(object sender, EventArgs e)
         {
-            string filename = DateTime.Now.ToShortDateString().Replace("/", "") + Session["Index"].ToString();
+            string filename = DateTime.Now.ToString().Replace("/", "").Replace("-","").Replace(":","") + Session["Index"].ToString();
             var aImageTool = new ImageTool();
             Stream fileLogo = null;
             string title = txtText.Value;
@@ -77,17 +77,18 @@ namespace WebCrawler
             }
 
             Image image = aImageTool.DownloadImageFromUrl(imgContent.ImageUrl);
-            int x = X.Value.Trim() != "" ? int.Parse(X.Value) : 0;
-            X.Value = "0";
-            int y = Y.Value.Trim() != "" ? int.Parse(Y.Value) : 0;
-            Y.Value = "0";
-            int w = W.Value.Trim() != "" ? int.Parse(W.Value) : image.Width;
-            W.Value = "0";
-            int h = H.Value.Trim() != "" ? int.Parse(H.Value) : image.Height;
-            H.Value = "0";
-            string linkImageCrop = aImageTool.CropAndAddTitle(image, filename, Server.MapPath("~/Upload"), new Rectangle(x, y, w, h),
+            int x1 = Convert.ToInt32(X.Value);
+            int y1 = Convert.ToInt32(Y.Value);
+            int x2 = Convert.ToInt32(X2.Value);
+            int y2 = Convert.ToInt32(Y2.Value);
+            int x = System.Math.Min(x1, x2);
+            int y = System.Math.Min(y1, y2) + 20;
+            int w = Convert.ToInt32(W.Value) + 30;
+            int h = Convert.ToInt32(H.Value);
+
+            filename = aImageTool.CropImage(image, filename, imgContent.ImageUrl, Server.MapPath("~/Upload/"),
+                new Rectangle(x, y, w, h),
                 title, fileLogo);
-            filename = "Upload/" + filename + ".jpg";
             imgContent.ImageUrl = filename;
             StringBuilder sb = new StringBuilder();
             sb.Append(" <div class='ns-box ns-other ns-effect-thumbslider ns-type-notice ns-hide'>");
