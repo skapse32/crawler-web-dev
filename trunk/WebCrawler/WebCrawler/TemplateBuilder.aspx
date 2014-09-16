@@ -10,12 +10,115 @@
     <link href="Content/css/style.css" rel="stylesheet" />
     <link href="Content/css/checkboxstyle.css" rel="stylesheet" />
     <link href="Content/css/jquery.Jcrop.css" rel="stylesheet" />
-       <script src="Content/js/jquery.min.js"></script>
+    <script src="Content/js/jquery.min.js"></script>
     <script src="Content/js/jquery.Jcrop.js"></script>
     <script src="Content/js/jquery.easing.min.js"></script>
-     
+
     <script src="Content/js/all_checkbox.js"></script>
-   
+    <style>
+        .ns-box {
+            padding: 5px;
+            line-height: 1.4;
+            z-index: 1000;
+            pointer-events: none;
+            color: rgba(250,251,255,0.95);
+            font-size: 90%;
+            font-family: 'Helvetica Neue', 'Segoe UI', Helvetica, Arial, sans-serif;
+            position: relative;
+        }
+
+        .ns-effect-thumbslider .ns-box-inner {
+            overflow: hidden;
+        }
+
+        .ns-effect-thumbslider.ns-hide .ns-thumb {
+            -webkit-animation-direction: reverse;
+            animation-direction: reverse;
+            -webkit-animation-delay: 0.3s;
+            animation-delay: 0.3s;
+        }
+
+        .ns-effect-thumbslider.ns-show .ns-thumb, .ns-effect-thumbslider.ns-hide .ns-thumb {
+            -webkit-animation-name: animJelly;
+            animation-name: animJelly;
+            -webkit-animation-duration: 1s;
+            animation-duration: 1s;
+            -webkit-animation-timing-function: linear;
+            animation-timing-function: linear;
+            -webkit-animation-fill-mode: both;
+            animation-fill-mode: both;
+        }
+
+        .ns-effect-thumbslider .ns-thumb {
+            position: absolute;
+            z-index: 100;
+            overflow: hidden;
+        }
+
+        .ns-effect-thumbslider.ns-hide .ns-content {
+            -webkit-animation-direction: reverse;
+            animation-direction: reverse;
+            -webkit-animation-delay: 0.3s;
+            animation-delay: 0.3s;
+        }
+
+        .ns-effect-thumbslider.ns-show .ns-content, .ns-effect-thumbslider.ns-hide .ns-content {
+            -webkit-animation-name: animSlide;
+            animation-name: animSlide;
+            -webkit-animation-duration: 0.4s;
+            animation-duration: 0.4s;
+            -webkit-animation-fill-mode: both;
+            animation-fill-mode: both;
+            -webkit-animation-timing-function: cubic-bezier(0.7,0,0.3,1);
+            animation-timing-function: cubic-bezier(0.7,0,0.3,1);
+        }
+
+        .ns-effect-thumbslider .ns-content {
+            background: #fff;
+            color: #727275;
+            font-weight: bold;
+            padding: 0 40px 0 80px;
+            height: 64px;
+            line-height: 60px;
+        }
+
+        .ns-thumb img {
+            width: 90px;
+            height: 64px;
+        }
+
+        .ns-effect-thumbslider.ns-hide .ns-close, .ns-effect-thumbslider.ns-hide .ns-content p {
+            -webkit-animation-direction: reverse;
+            animation-direction: reverse;
+        }
+
+        .ns-effect-thumbslider.ns-show .ns-close, .ns-effect-thumbslider.ns-hide .ns-close, .ns-effect-thumbslider.ns-show .ns-content p, .ns-effect-thumbslider.ns-hide .ns-content p {
+            -webkit-animation-name: animFade;
+            animation-name: animFade;
+            -webkit-animation-duration: 0.3s;
+            animation-duration: 0.3s;
+            -webkit-animation-fill-mode: forwards;
+            animation-fill-mode: forwards;
+        }
+
+        .ns-box a {
+            color: inherit;
+            opacity: 0.7;
+            font-weight: 700;
+        }
+
+        .ns-close {
+            width: 20px;
+            height: 20px;
+            right: 4px;
+            top: 4px;
+            overflow: hidden;
+            text-indent: 100%;
+            cursor: pointer;
+            -webkit-backface-visibility: hidden;
+            backface-visibility: hidden;
+        }
+    </style>
 </head>
 <body>
     <!-- multistep form -->
@@ -32,7 +135,7 @@
         <!-- fieldsets -->
         <fieldset>
             <h2 class="fs-title">Getting images</h2>
-            <input type="button" id="first" name="next" class="next action-button" value="Next" />
+            <input id="first" name="next" class="next action-button" value="Next" />
             <asp:UpdatePanel runat="server" ID="UpdatePanelStep1">
                 <ContentTemplate>
                     <asp:UpdateProgress ID="UpdateProgressStep1" runat="server">
@@ -51,6 +154,7 @@
                     <div style="float: left;">
                         <input class="second" id="selectall" name="check" type="checkbox">
                         <label class="label2" for="selectall">Select all</label>
+                        <asp:Button type="button" class="action-button" ID="btnClear" OnClick="btnClear_OnClick" Text="Get Images" runat="server" />
                     </div>
                     <div class="clear"></div>
 
@@ -59,6 +163,7 @@
                     </div>
                 </ContentTemplate>
             </asp:UpdatePanel>
+
         </fieldset>
         <fieldset>
             <h2 class="fs-title">Crop and Additional text</h2>
@@ -74,12 +179,14 @@
                         </ProgressTemplate>
                     </asp:UpdateProgress>
                     <div class="float-lt show-image ">
+                        <div>
+                            <asp:Button runat="server" class="action-button" Text="Prev image" ID="btnPrview" OnClick="btnPrview_OnClick" />
+                            <asp:Button runat="server" class="action-button" Text="Next image" ID="btnNext" OnClick="btnNext_OnClick" />
+                            <asp:Button runat="server" Text="Crop and Additional Text" CssClass="btn action-button" Width="180px" ID="btnCropAndSave" OnClick="btnCropAndSave_OnClick" />
+
+                        </div>
                         <div class="image-content">
                             <asp:Image runat="server" ID="imgContent" />
-                        </div>
-                        <div>
-                            <asp:Button runat="server" Text="Crop and Additional Text" CssClass="btn action-button" Width="180px" ID="btnCropAndSave" OnClick="btnCropAndSave_OnClick" />
-                            <asp:Button runat="server" class="action-button" value="Next image" ID="btnNext" OnClick="btnNext_OnClick"/>
                         </div>
                     </div>
                     <div class="float-lt options-image">
@@ -101,6 +208,7 @@
                             </div>
                         </div>
                     </div>
+
                     <%-- Hidden field for store cror area --%>
                     <div class="hidden">
                         <asp:HiddenField ID="X" runat="server" />
@@ -113,7 +221,7 @@
             </asp:UpdatePanel>
         </fieldset>
         <fieldset>
-            <h2 class="fs-title">Personal Details</h2>
+            <h2 class="fs-title">Select Template</h2>
             <h3 class="fs-subtitle">We will never sell it</h3>
             <input type="text" name="fname" placeholder="First Name" />
             <input type="text" name="lname" placeholder="Last Name" />
@@ -142,10 +250,10 @@
             <input type="button" name="previous" class="previous action-button" value="Previous" />
             <input type="submit" name="submit" class="submit action-button" value="Submit" />
         </fieldset>
-        <input type="hidden" id="imagelink" runat="server"/>
+        <input type="hidden" id="imagelink" runat="server" />
     </form>
 
- 
+
     <script>
         var chkArray = [];
         var indeximage = 0;
@@ -308,14 +416,16 @@
             });
         });
         function getValueUsingClass() {
-            
+
             $(".second:checked").each(function () {
                 chkArray.push($(this).val());
             });
 
+            //var index = $.inArray('on', chkArray);
+            //chkArray.splice(index, 1);
+
             var selected;
             selected = chkArray.join("|");
-            console.log(selected);
             $('#<%= imagelink.ClientID%>').val(selected);
         }
         function SelectCropArea(c) {
