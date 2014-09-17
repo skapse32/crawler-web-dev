@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Drawing.Drawing2D;
+using System.Drawing.Imaging;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -9,6 +11,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using WebCrawler.Core;
 using WebCrawler.Core.Info;
+using Encoder = System.Text.Encoder;
 using Image = System.Drawing.Image;
 
 namespace WebCrawler
@@ -21,6 +24,10 @@ namespace WebCrawler
             //{
             //    Response.Redirect("Login.aspx?continue=" + Request.RawUrl);
             //}
+            if (!IsPostBack)
+            {
+                originalImage.Src = originalImage.Src;
+            }
         }
 
         public void getImageFromUrl(string pUrl)
@@ -65,107 +72,218 @@ namespace WebCrawler
             getImageFromUrl(txturl.Value);
         }
 
-        protected void btnCropAndSave_OnClick(object sender, EventArgs e)
+
+        protected void btnCrop_OnClick(object sender, EventArgs e)
         {
-            string filename = DateTime.Now.ToString().Replace("/", "").Replace("-","").Replace(":","") + Session["Index"].ToString();
-            var aImageTool = new ImageTool();
-            Stream fileLogo = null;
-            string title = txtText.Value;
-            if (fileUpload.HasFile)
+            int X1 = Convert.ToInt32(Request.Form["x1"]);
+            int Y1 = Convert.ToInt32(Request["y1"]);
+            int X2 = Convert.ToInt32(Request.Form["x2"]);
+            int Y2 = Convert.ToInt32(Request.Form["y2"]);
+            int X = System.Math.Min(X1, X2);
+            int Y = System.Math.Min(Y1, Y2);
+            int w = Convert.ToInt32(Request.Form["w"]);
+            int h = Convert.ToInt32(Request.Form["h"]);
+
+            // That can be any image type (jpg,jpeg,png,gif) from any where in the local server
+            bool flag = true;
+            string originalFile = "";
+            try
             {
-                fileLogo = fileUpload.PostedFile.InputStream;
+                originalFile = Server.MapPath(originalImage.Src);
+            }
+            catch (Exception ex)
+            {
+                flag = false;
+                originalFile = originalImage.Src;
             }
 
-            Image image = aImageTool.DownloadImageFromUrl(imgContent.ImageUrl);
-            int x1 = Convert.ToInt32(X.Value);
-            int y1 = Convert.ToInt32(Y.Value);
-            int x2 = Convert.ToInt32(X2.Value);
-            int y2 = Convert.ToInt32(Y2.Value);
-            int x = System.Math.Min(x1, x2);
-            int y = System.Math.Min(y1, y2) + 20;
-            int w = Convert.ToInt32(W.Value) + 30;
-            int h = Convert.ToInt32(H.Value);
+            var lImageUrlCompleted = (List<string>) ViewState["imagecompleted"];
+            var aIndexImageCopleted = lImageUrlCompleted.IndexOf(originalFile);
 
-            filename = aImageTool.CropImage(image, filename, imgContent.ImageUrl, Server.MapPath("~/Upload/"),
-                new Rectangle(x, y, w, h),
-                title, fileLogo);
-            imgContent.ImageUrl = filename;
-            StringBuilder sb = new StringBuilder();
-            sb.Append(" <div class='ns-box ns-other ns-effect-thumbslider ns-type-notice ns-hide'>");
-            sb.Append("<div class='ns-box-inner'>");
-            sb.Append("<div class='ns-thumb'>");
-            sb.Append("<img src='" + filename + "'></div>");
-            sb.Append("<div class='ns-content'><p>" + txtTitle.Value + "</p> </div> </div>");
-            sb.Append("<span class='ns-close'></span>");
-            sb.Append("</div>");
-            imgResult.Text += sb.ToString();
-            var lImageLink = (Dictionary<int, ImagesInfo>)Session["ImageLink"];
-            var aImageInfo = new ImagesInfo();
-            lImageLink.TryGetValue((int) Session["Index"], out aImageInfo);
-            aImageInfo.ImagesLink = filename;
-            aImageInfo.Title = txtTitle.Value;
-        }
-
-        protected void btnNext_OnClick(object sender, EventArgs e)
-        {
-            if (Session["ImageLink"] == null)
+            Image img = null;
+            if (flag)
             {
-                Dictionary<int, ImagesInfo> lImageLink = new Dictionary<int, ImagesInfo>();
-                var lImageChoose = imagelink.Value.Split('|');
-                for (int i = 1; i < lImageChoose.Length; i++)
-                {
-                    lImageLink.Add(i, new ImagesInfo() {ImagesLink = lImageChoose[i]});
-                }
-                Session["Index"] = 0;
-                Session["ImageLink"] = lImageLink;
-            }
-
-            var aImageLink = (Dictionary<int, ImagesInfo>) Session["ImageLink"];
-            var aImageInfo = new ImagesInfo();
-            if (aImageLink.Count - 1 > (int)Session["Index"])
-            {
-                Session["Index"] = (int)Session["Index"] + 1;
+                img = Image.FromFile(originalFile);
             }
             else
             {
-                Session["Index"] = 0;
+                img = DownloadImageFromUrl(originalFile);
             }
-            aImageLink.TryGetValue((int)Session["Index"], out aImageInfo);
-            imgContent.ImageUrl = aImageInfo.ImagesLink;
-        }
-
-        protected void btnPrview_OnClick(object sender, EventArgs e)
-        {
-            if (Session["ImageLink"] == null)
+            using (Bitmap _bitmap = new Bitmap(w, h))
             {
-                Dictionary<int, ImagesInfo> lImageLink = new Dictionary<int, ImagesInfo>();
-                var lImageChoose = imagelink.Value.Split('|');
-                for (int i = 1; i < lImageChoose.Length; i++)
+                _bitmap.SetResolution(img.HorizontalResolution, img.VerticalResolution);
+                using (Graphics _graphic = Graphics.FromImage(_bitmap))
                 {
-                    lImageLink.Add(i, new ImagesInfo() {ImagesLink = lImageChoose[i]});
+                    _graphic.InterpolationMode = InterpolationMode.HighQualityBicubic;
+                    _graphic.SmoothingMode = SmoothingMode.HighQuality;
+                    _graphic.PixelOffsetMode = PixelOffsetMode.HighQuality;
+                    _graphic.CompositingQuality = CompositingQuality.HighQuality;
+                    _graphic.DrawImage(img, 0, 0, w, h);
+                    _graphic.DrawImage(img, new Rectangle(0, 0, w, h), X, Y, w, h, GraphicsUnit.Pixel);
+
+
+                    if (txtAdditionalText.Value.Trim() != "")
+                    {
+                        // For Transparent Watermark Text 
+                        int opacity = 255; // range from 0 to 255
+
+                        //SolidBrush brush = new SolidBrush(Color.Red);
+                        SolidBrush brush = new SolidBrush(Color.FromArgb(opacity, Color.White));
+                        Font font = new Font("Arial", 16);
+                        _graphic.DrawString(txtAdditionalText.Value, font, brush, new PointF(0, 10));
+                    }
+
+                    if (fileUpload.HasFile)
+                    {
+                        Image logoImage = Image.FromStream(fileUpload.PostedFile.InputStream);
+                        logoImage = resizeImage(logoImage, new Size(50, 20));
+                        _graphic.DrawImage(logoImage,
+                            new Point(w - logoImage.Width - 10, h - logoImage.Height - 10));
+                    }
+
+
+                    string extension = Path.GetExtension(originalFile);
+                    string croppedFileName = Guid.NewGuid().ToString();
+                    string path = Server.MapPath("~/Upload/");
+
+
+                    // If the image is a gif file, change it into png
+                    if (extension.EndsWith("gif", StringComparison.OrdinalIgnoreCase))
+                    {
+                        extension = ".png";
+                    }
+
+                    string newFullPathName = string.Concat(path, croppedFileName, extension);
+
+                    using (EncoderParameters encoderParameters = new EncoderParameters(1))
+                    {
+                        encoderParameters.Param[0] = new EncoderParameter(System.Drawing.Imaging.Encoder.Quality,
+                            value: 100L);
+                        _bitmap.Save(newFullPathName, GetImageCodec(extension), encoderParameters);
+                    }
+                    string filename = string.Concat("/Upload/", croppedFileName + extension);
+
+                    lImageUrlCompleted[aIndexImageCopleted] = filename;
+                    ViewState["imagecompleted"] = lImageUrlCompleted;
+
+                    StringBuilder sb = new StringBuilder();
+                    sb.Append(" <div class='ns-box ns-other ns-effect-thumbslider ns-type-notice ns-hide'>");
+                    sb.Append("<div class='ns-box-inner'>");
+                    sb.Append("<div class='ns-thumb'>");
+                    sb.Append("<img src='" + filename + "'></div>");
+                    sb.Append("<div class='ns-content'><p>" + txtAdditionalText.Value + "</p> </div> </div>");
+                    sb.Append("<span class='ns-close'></span>");
+                    sb.Append("</div>");
+                    lblCroppedImage.Text += sb.ToString();
+
+                    string listImageCompleted = "";
+                    foreach (var aUrl in lImageUrlCompleted)
+                    {
+                        listImageCompleted += "|" + aUrl;
+                    }
+                    imageCompleted.Value = listImageCompleted.Remove(0, 1);
                 }
-                Session["Index"] = 0;
-                Session["ImageLink"] = lImageLink;
             }
-             var aImageLink = (Dictionary<int, ImagesInfo>) Session["ImageLink"];
-            var aImageInfo = new ImagesInfo();
-            if ((int) Session["Index"] == 0)
-            {
-                Session["Index"] = aImageLink.Count - 1;
-            }
-            else
-            {
-                Session["Index"] = (int) Session["Index"] - 1;
-            }
-            aImageLink.TryGetValue((int)Session["Index"], out aImageInfo);
-            imgContent.ImageUrl = aImageInfo.ImagesLink;
+
         }
 
-        protected void btnClear_OnClick(object sender, EventArgs e)
+        private Image DownloadImageFromUrl(string imageUrl)
         {
-            Session["Index"] = 0;
-            Session["ImageLink"] = null;
-            imgResult.Text = "";
+            System.Drawing.Image image = null;
+
+            try
+            {
+                System.Net.HttpWebRequest webRequest = (System.Net.HttpWebRequest)System.Net.HttpWebRequest.Create(imageUrl);
+                webRequest.AllowWriteStreamBuffering = true;
+                webRequest.Timeout = 30000;
+
+                System.Net.WebResponse webResponse = webRequest.GetResponse();
+
+                System.IO.Stream stream = webResponse.GetResponseStream();
+
+                image = System.Drawing.Image.FromStream(stream);
+
+                webResponse.Close();
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+
+            return image;
+        }
+
+        /// <summary>
+        /// Find the right codec
+        /// </summary>
+        /// <param name="extension"></param>
+        /// <returns></returns>
+        public static ImageCodecInfo GetImageCodec(string extension)
+        {
+            extension = extension.ToUpperInvariant();
+            ImageCodecInfo[] codecs = ImageCodecInfo.GetImageEncoders();
+            foreach (ImageCodecInfo codec in codecs)
+            {
+                if (codec.FilenameExtension.Contains(extension))
+                {
+                    return codec;
+                }
+            }
+            return codecs[1];
+        }
+
+        private Image resizeImage(Image imgToResize, Size size)
+        {
+            int sourceWidth = imgToResize.Width;
+            int sourceHeight = imgToResize.Height;
+
+            float nPercent = 0;
+            float nPercentW = 0;
+            float nPercentH = 0;
+
+            nPercentW = ((float)size.Width / (float)sourceWidth);
+            nPercentH = ((float)size.Height / (float)sourceHeight);
+
+            if (nPercentH < nPercentW)
+                nPercent = nPercentH;
+            else
+                nPercent = nPercentW;
+
+            int destWidth = (int)(sourceWidth * nPercent);
+            int destHeight = (int)(sourceHeight * nPercent);
+
+            Bitmap b = new Bitmap(destWidth, destHeight);
+            Graphics g = Graphics.FromImage((Image)b);
+            g.InterpolationMode = InterpolationMode.HighQualityBicubic;
+
+            g.DrawImage(imgToResize, 0, 0, destWidth, destHeight);
+            g.Dispose();
+
+            return (Image)b;
+        }
+
+        protected void btnPrevButton_OnClick(object sender, EventArgs e)
+        {
+            string Url = ((List<string>)ViewState["imagecompleted"])[int.Parse(imdex.Value)];
+            originalImage.Src = Url;
+        }
+
+        protected void btnNextButton_OnClick(object sender, EventArgs e)
+        {
+            string Url = ((List<string>)ViewState["imagecompleted"])[int.Parse(imdex.Value)];
+            originalImage.Src = Url;
+        }
+
+        protected void btnBegin_OnClick(object sender, EventArgs e)
+        {
+            btnBegin.Text = "Reset all";
+            List<string> lImageUrlCompleted = new List<string>();
+            lImageUrlCompleted.AddRange(imagelink.Value.Split('|'));
+            ViewState["imagecompleted"] = lImageUrlCompleted;
+
+            btnPrevButton.Enabled = true;
+            btnNextButton.Enabled = true;
+            originalImage.Src = ((List<string>) ViewState["imagecompleted"])[0];
         }
     }
 }

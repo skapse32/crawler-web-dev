@@ -76,15 +76,6 @@ namespace WebCrawler {
         protected global::System.Web.UI.WebControls.Button btnGetImage;
         
         /// <summary>
-        /// btnClear control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnClear;
-        
-        /// <summary>
         /// lblResult control.
         /// </summary>
         /// <remarks>
@@ -112,49 +103,58 @@ namespace WebCrawler {
         protected global::System.Web.UI.UpdateProgress UpdateProgressStep2;
         
         /// <summary>
-        /// imgContent control.
+        /// btnBegin control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Image imgContent;
+        protected global::System.Web.UI.WebControls.Button btnBegin;
         
         /// <summary>
-        /// btnPrview control.
+        /// btnPrevButton control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnPrview;
+        protected global::System.Web.UI.WebControls.Button btnPrevButton;
         
         /// <summary>
-        /// btnNext control.
+        /// btnNextButton control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnNext;
+        protected global::System.Web.UI.WebControls.Button btnNextButton;
         
         /// <summary>
-        /// btnCropAndSave control.
+        /// originalImage control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnCropAndSave;
+        protected global::System.Web.UI.HtmlControls.HtmlImage originalImage;
         
         /// <summary>
-        /// imgResult control.
+        /// btnCrop control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Literal imgResult;
+        protected global::System.Web.UI.WebControls.Button btnCrop;
+        
+        /// <summary>
+        /// lblCroppedImage control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Literal lblCroppedImage;
         
         /// <summary>
         /// fileUpload control.
@@ -166,13 +166,13 @@ namespace WebCrawler {
         protected global::System.Web.UI.WebControls.FileUpload fileUpload;
         
         /// <summary>
-        /// txtText control.
+        /// txtAdditionalText control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputText txtText;
+        protected global::System.Web.UI.HtmlControls.HtmlInputText txtAdditionalText;
         
         /// <summary>
         /// txtTitle control.
@@ -184,58 +184,58 @@ namespace WebCrawler {
         protected global::System.Web.UI.HtmlControls.HtmlInputText txtTitle;
         
         /// <summary>
-        /// X control.
+        /// UpdatePanel1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HiddenField X;
+        protected global::System.Web.UI.UpdatePanel UpdatePanel1;
         
         /// <summary>
-        /// Y control.
+        /// UpdateProgress1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HiddenField Y;
+        protected global::System.Web.UI.UpdateProgress UpdateProgress1;
         
         /// <summary>
-        /// X2 control.
+        /// UpdatePanel2 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HiddenField X2;
+        protected global::System.Web.UI.UpdatePanel UpdatePanel2;
         
         /// <summary>
-        /// Y2 control.
+        /// UpdateProgress2 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HiddenField Y2;
+        protected global::System.Web.UI.UpdateProgress UpdateProgress2;
         
         /// <summary>
-        /// W control.
+        /// UpdatePanel3 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HiddenField W;
+        protected global::System.Web.UI.UpdatePanel UpdatePanel3;
         
         /// <summary>
-        /// H control.
+        /// UpdateProgress3 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HiddenField H;
+        protected global::System.Web.UI.UpdateProgress UpdateProgress3;
         
         /// <summary>
         /// imagelink control.
@@ -245,5 +245,23 @@ namespace WebCrawler {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlInputHidden imagelink;
+        
+        /// <summary>
+        /// imdex control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlInputHidden imdex;
+        
+        /// <summary>
+        /// imageCompleted control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlInputHidden imageCompleted;
     }
 }
