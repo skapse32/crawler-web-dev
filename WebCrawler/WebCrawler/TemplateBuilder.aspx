@@ -6,16 +6,13 @@
 <head id="Head1" runat="server">
     <title></title>
     <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700,800' rel='stylesheet' type='text/css'>
-    <link href="Content/css/style-sub.css" rel="stylesheet" />
     <link href="Content/css/style.css" rel="stylesheet" />
-    <link href="Content/css/checkboxstyle.css" rel="stylesheet" />
     <link href="Content/css/jcrop.css" rel="stylesheet" />
-    <link href="Content/css/jquery.Jcrop.css" rel="stylesheet" />
+    <link href="Content/css/style-sub.css" rel="stylesheet" />
+    <link href="Content/css/checkboxstyle.css" rel="stylesheet" />
     <script src="Content/js/jquery.min.js"></script>
     <script src="Content/js/jquery.Jcrop.js"></script>
     <script src="Content/js/jquery.easing.min.js"></script>
-
-    <script src="Content/js/all_checkbox.js"></script>
     <style>
         .ns-box {
             padding: 5px;
@@ -91,6 +88,7 @@
         .ns-effect-thumbslider.ns-hide .ns-close, .ns-effect-thumbslider.ns-hide .ns-content p {
             -webkit-animation-direction: reverse;
             animation-direction: reverse;
+            padding: 5px;
         }
 
         .ns-effect-thumbslider.ns-show .ns-close, .ns-effect-thumbslider.ns-hide .ns-close, .ns-effect-thumbslider.ns-show .ns-content p, .ns-effect-thumbslider.ns-hide .ns-content p {
@@ -121,7 +119,7 @@
         }
     </style>
 </head>
-<body>
+<body onload="Init();">
     <!-- multistep form -->
     <form id="msform" runat="server">
         <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
@@ -151,14 +149,7 @@
                     <label for="txturl">Example: http://www.cars.com/vehicledetail/detail/610397293/photo </label>
                     <br />
                     <asp:Button type="button" class="action-button" ID="btnGetImage" OnClick="btnGetImage_OnClick" Text="Get Images" runat="server" />
-                    <br />
-                    <div style="float: left;">
-                        <input class="second" id="selectall" name="check" type="checkbox">
-                        <label class="label2" for="selectall">Select all</label>
-                        <asp:Button type="button" class="action-button" ID="btnClear" OnClick="btnClear_OnClick" OnClientClick="return ValidateSelected()" Text="Get Images" runat="server" />
-                    </div>
                     <div class="clear"></div>
-
                     <div class="check">
                         <asp:Literal ID="lblResult" runat="server"></asp:Literal>
                     </div>
@@ -168,7 +159,7 @@
         </fieldset>
         <fieldset>
             <h2 class="fs-title">Crop and Additional text</h2>
-            <input type="button" name="previous" class="previous action-button" value="Previous" />
+            <input type="button" name="previous" class="previous action-button" value="Previous" id="frevfirst" />
             <input type="button" name="next" class="next action-button" value="Next" />
             <asp:UpdatePanel runat="server" ID="UpdatePanelStep2">
                 <ContentTemplate>
@@ -179,86 +170,147 @@
                             </div>
                         </ProgressTemplate>
                     </asp:UpdateProgress>
-                    <div class="float-lt show-image ">
-                        
-                        <div class="image-content">
-                            <asp:Image runat="server" ID="imgContent" />
-                        </div>
-                        <div>
-                            <asp:Button runat="server" class="action-button" Text="Prev image" ID="btnPrview" OnClick="btnPrview_OnClick" />
-                            <asp:Button runat="server" class="action-button" Text="Next image" ID="btnNext" OnClick="btnNext_OnClick" />
-                            <asp:Button runat="server" Text="Crop and Additional Text" CssClass="btn action-button" Width="180px" ID="btnCropAndSave" OnClick="btnCropAndSave_OnClick" />
-
-                        </div>
-                    </div>
-                    <div class="float-lt options-image">
-                        <div class="options-top">
-                            <asp:Literal runat="server" ID="imgResult"></asp:Literal>
-                        </div>
-                        <div class="options-bottom">
-                            <div class="btn_form">
-                                <span>Choose logo:</span>
-                                <asp:FileUpload runat="server" ID="fileUpload" CssClass="btn btn-primary" />
-                            </div>
-                            <div class="additianalText">
-                                <label for="txtText" style="display: inline-block">Additional text:</label>
-                                <input type="text" id="txtText" placeholder="Enter additional text" runat="server" />
-                            </div>
-                            <div class="title">
-                                <label for="txtTitle" style="display: inline-block">Title text:</label>
-                                <input type="text" id="txtTitle" placeholder="Enter Title" runat="server" />
-                            </div>
-                        </div>
-                    </div>
-
-                    <%-- Hidden field for store cror area --%>
-                    <div class="hidden">
-                        <asp:HiddenField ID="X" runat="server" />
-                        <asp:HiddenField ID="Y" runat="server" />
-                        <asp:HiddenField ID="X2" runat="server" />
-                        <asp:HiddenField ID="Y2" runat="server" />
-                        <asp:HiddenField ID="W" runat="server" />
-                        <asp:HiddenField ID="H" runat="server" />
-                    </div>
+                    <table>
+                        <tr>
+                            <asp:Button runat="server" ID="btnBegin" OnClick="btnBegin_OnClick" CssClass="action-button" Text="Begin Crop Image" Width="215" />
+                            <asp:Button OnClientClick="previewImage();" Style="width: 128px; height: 37px; padding: 2px;" class="action-button" Enabled="False" ID="btnPrevButton" OnClick="btnPrevButton_OnClick" Text="Preview Image" runat="server" />
+                            <asp:Button OnClientClick="nextImage();" Style="width: 128px; height: 37px; padding: 2px; margin-left: 5px" Enabled="False" class="action-button" ID="btnNextButton" OnClick="btnNextButton_OnClick" Text="Next Image" runat="server" />
+                        </tr>
+                        <tr>
+                            <td>Original image
+                                <div style="width: 510px; height: 400px; overflow: auto; border: solid 1px black; padding: 10px; margin-bottom: 5px; position: relative;"
+                                    id="imgContainer">
+                                    <img runat="server" alt="My auto" title="That's my auto :)" id="originalImage" />
+                                </div>
+                                <div>
+                                    X1
+                                    <input type="text" size="4" id="x1" name="x1" class="coor" style="width: 20px; height: 30px" readonly="readonly" />
+                                    Y1
+                                    <input type="text" size="4" id="y1" name="y1" class="coor" style="width: 20px; height: 30px" readonly="readonly" />
+                                    X2
+                                    <input type="text" size="4" id="x2" name="x2" class="coor" style="width: 20px; height: 30px" readonly="readonly" />
+                                    Y2
+                                    <input type="text" size="4" id="y2" name="y2" class="coor" style="width: 20px; height: 30px" readonly="readonly" />
+                                    W
+                                    <input type="text" size="4" id="w" name="w" class="coor" style="width: 20px; height: 30px" readonly="readonly" />
+                                    H
+                                    <input type="text" size="4" id="h" name="h" class="coor" style="width: 20px; height: 30px" readonly="readonly" />
+                                </div>
+                                <div>
+                                    <asp:Button runat="server" ID="btnCrop" OnClick="btnCrop_OnClick" Text="Crop" OnClientClick="return ValidateSelected();" />
+                                </div>
+                            </td>
+                            <td style="vertical-align: top;">Cropped image:
+                                <div style="width: 400px; height: 200px; overflow: auto; border: solid 1px black; padding: 10px; margin-bottom: 5px;">
+                                    <asp:Literal runat="server" ID="lblCroppedImage"></asp:Literal>
+                                </div>
+                                <div style="width: 400px; height: 200px; overflow: auto; border: solid 1px black; padding: 10px; margin-bottom: 5px;">
+                                    <asp:FileUpload runat="server" ID="fileUpload" />
+                                    <input type="text" placeholder="Enter Additional text" id="txtAdditionalText" runat="server" />
+                                    <input type="text" placeholder="Enter title text" id="txtTitle" runat="server" />
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
                     <div class="clearfix"></div>
                 </ContentTemplate>
             </asp:UpdatePanel>
         </fieldset>
         <fieldset>
             <h2 class="fs-title">Select Template</h2>
-            <h3 class="fs-subtitle">We will never sell it</h3>
-            <input type="text" name="fname" placeholder="First Name" />
-            <input type="text" name="lname" placeholder="Last Name" />
-            <input type="text" name="phone" placeholder="Phone" />
-            <textarea name="address" placeholder="Address"></textarea>
             <input type="button" name="previous" class="previous action-button" value="Previous" />
-            <input type="button" name="next" class="next action-button" value="Next" />
+            <input type="button" name="next" class="next action-button" value="Next" onclick="setImageComplatedToDragAndDrop()" />
+            <asp:UpdatePanel runat="server" ID="UpdatePanel1">
+                <ContentTemplate>
+                    <asp:UpdateProgress ID="UpdateProgress1" runat="server">
+                        <ProgressTemplate>
+                            <div style="position: fixed; text-align: center; height: 100%; width: 100%; top: 0; right: 0; left: 0; z-index: 9999999; background-color: #000000; opacity: 0.7;">
+                                <asp:Image ID="imgUpdateProgress" runat="server" ImageUrl="~/Content/images/ajax-loader.gif" AlternateText="Loading ..." ToolTip="Loading ..." Style="padding: 10px; position: fixed; top: 45%; left: 50%;" />
+                            </div>
+                        </ProgressTemplate>
+                    </asp:UpdateProgress>
+                </ContentTemplate>
+            </asp:UpdatePanel>
         </fieldset>
         <fieldset>
-            <h2 class="fs-title">Personal Details</h2>
-            <h3 class="fs-subtitle">We will never sell it</h3>
-            <input type="text" name="fname" placeholder="First Name" />
-            <input type="text" name="lname" placeholder="Last Name" />
-            <input type="text" name="phone" placeholder="Phone" />
-            <textarea name="address" placeholder="Address"></textarea>
+            <h2 class="fs-title">Adding image</h2>
             <input type="button" name="previous" class="previous action-button" value="Previous" />
             <input type="button" name="next" class="next action-button" value="Next" />
+            <asp:UpdatePanel runat="server" ID="UpdatePanel2">
+                <ContentTemplate>
+                    <asp:UpdateProgress ID="UpdateProgress2" runat="server">
+                        <ProgressTemplate>
+                            <div style="position: fixed; text-align: center; height: 100%; width: 100%; top: 0; right: 0; left: 0; z-index: 9999999; background-color: #000000; opacity: 0.7;">
+                                <asp:Image ID="imgUpdateProgress" runat="server" ImageUrl="~/Content/images/ajax-loader.gif" AlternateText="Loading ..." ToolTip="Loading ..." Style="padding: 10px; position: fixed; top: 45%; left: 50%;" />
+                            </div>
+                        </ProgressTemplate>
+                    </asp:UpdateProgress>
+                    <div id="div1" ondrop="drop(event)" ondragover="allowDrop(event)">
+                        
+                    </div>
+
+                    <div id="div2" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+
+                </ContentTemplate>
+            </asp:UpdatePanel>
         </fieldset>
         <fieldset>
-            <h2 class="fs-title">Personal Details</h2>
-            <h3 class="fs-subtitle">We will never sell it</h3>
-            <input type="text" name="fname" placeholder="First Name" />
-            <input type="text" name="lname" placeholder="Last Name" />
-            <input type="text" name="phone" placeholder="Phone" />
-            <textarea name="address" placeholder="Address"></textarea>
+            <h2 class="fs-title">Completed</h2>
             <input type="button" name="previous" class="previous action-button" value="Previous" />
             <input type="submit" name="submit" class="submit action-button" value="Submit" />
+            <asp:UpdatePanel runat="server" ID="UpdatePanel3">
+                <ContentTemplate>
+                    <asp:UpdateProgress ID="UpdateProgress3" runat="server">
+                        <ProgressTemplate>
+                            <div style="position: fixed; text-align: center; height: 100%; width: 100%; top: 0; right: 0; left: 0; z-index: 9999999; background-color: #000000; opacity: 0.7;">
+                                <asp:Image ID="imgUpdateProgress" runat="server" ImageUrl="~/Content/images/ajax-loader.gif" AlternateText="Loading ..." ToolTip="Loading ..." Style="padding: 10px; position: fixed; top: 45%; left: 50%;" />
+                            </div>
+                        </ProgressTemplate>
+                    </asp:UpdateProgress>
+                </ContentTemplate>
+            </asp:UpdatePanel>
         </fieldset>
         <input type="hidden" id="imagelink" runat="server" />
+        <input type="hidden" id="imdex" runat="server" />
+        <input type="hidden" id="imageCompleted" runat="server" />
     </form>
 
 
     <script>
+        function allowDrop(ev) {
+            ev.preventDefault();
+        }
+
+        function drag(ev) {
+            ev.dataTransfer.setData("text/html", ev.target.id);
+        }
+
+        function drop(ev) {
+            ev.preventDefault();
+            var data = ev.dataTransfer.getData("text/html");
+            ev.target.appendChild(document.getElementById(data));
+        }
+        function Init() {
+            $(function () {
+                $('#originalImage').Jcrop({
+                    onChange: showCoords,
+                    onSelect: showCoords
+                });
+            });
+            // Patch for IE to force "overflow: auto;"
+            document.getElementById("imgContainer").style["position"] = "relative";
+            Sys.WebForms.PageRequestManager.getInstance().add_endRequest(function () {
+                $(function () {
+                    $('#originalImage').Jcrop({
+                        onChange: showCoords,
+                        onSelect: showCoords
+                    });
+                });
+                // Patch for IE to force "overflow: auto;"
+                document.getElementById("imgContainer").style["position"] = "relative";
+            });
+        }
+
         var chkArray = [];
         var indeximage = 0;
         $(document).ready(function () {
@@ -305,6 +357,8 @@
             });
 
             $(".previous").click(function () {
+                if ($(this).attr("id") == 'frevfirst')
+                    setDefault();
                 if (animating) return false;
                 animating = true;
 
@@ -420,49 +474,87 @@
             });
         });
         function getValueUsingClass() {
-
+            chkArray = [];
             $(".second:checked").each(function () {
                 chkArray.push($(this).val());
             });
-
-            //var index = $.inArray('on', chkArray);
-            //chkArray.splice(index, 1);
-
             var selected;
             selected = chkArray.join("|");
-            $('#<%= imagelink.ClientID%>').val(selected);
+            $("#imagelink").val(selected);
+            $("#imdex").val("0");
+            $("#originalImage").attr("src", chkArray[0]);
+
         }
-        function SelectCropArea(c) {
-            $('#<%=X.ClientID%>').val(parseInt(c.x));
-            $('#<%=Y2.ClientID%>').val(parseInt(c.y2));
-            $('#<%=X2.ClientID%>').val(parseInt(c.x2));
-            $('#<%=Y.ClientID%>').val(parseInt(c.y));
-            $('#<%=W.ClientID%>').val(parseInt(c.w));
-            $('#<%=H.ClientID%>').val(parseInt(c.h));
+
+        function setDefault() {
+            indeximage = 0;
+            $("#imdex").val(indeximage);
         }
-        $(document).ready(function () {
-            $('#<%= imgContent.ClientID%>').Jcrop({
-                onChange: SelectCropArea,
-                onSelect: SelectCropArea
-            });
-            // Patch for IE to force "overflow: auto;"
-          
-            Sys.WebForms.PageRequestManager.getInstance().add_endRequest(function () {
-                $('#<%= imgContent.ClientID%>').Jcrop({
-                    onChange: SelectCropArea,
-                    onSelect: SelectCropArea
-                });
-                
-            });
-        });
+
+        function nextImage() {
+            if (indeximage < chkArray.length - 1) {
+                indeximage++;
+            } else {
+                indeximage = 0;
+            }
+            $("#imdex").val(indeximage);
+            $("#originalImage").attr("src", chkArray[indeximage]);
+        }
+
+        function previewImage() {
+            if (indeximage > 0) {
+                indeximage--;
+            } else {
+                indeximage = chkArray.length - 1;
+            }
+            $("#imdex").val(indeximage);
+            $("#originalImage").attr("src", chkArray[indeximage]);
+        }
+
+        function showCoords(c) {
+            $('#x1').val(c.x);
+            $('#y1').val(c.y);
+            $('#x2').val(c.x2);
+            $('#y2').val(c.y2);
+            $('#w').val(c.w);
+            $('#h').val(c.h);
+        };
+
         function ValidateSelected() {
-            if (document.getElementById("<%=W.ClientID%>").value == "" || document.getElementById("<%=W.ClientID%>").value == "0"
-                || document.getElementById("<%=H.ClientID%>").value == "" || document.getElementById("<%=H.ClientID%>").value == "0") {
+            if (document.getElementById("w").value == "" || document.getElementById("w").value == "0"
+                || document.getElementById("h").value == "" || document.getElementById("h").value == "0") {
                 alert("No area to crop was selected");
                 return false;
             }
         }
 
+        function setImageComplatedToDragAndDrop() {
+            var myLink = [];
+            myLink = $('#imageCompleted').val().split('|');
+
+            var myDiv = $('#div1');
+            var tmp = "";
+            for (var i = 0; i < myLink.length; i++) {
+                tmp += "<img  width='88' height='31' src='content/images/02.jpg' draggable='true' ondragstart='drag(event)' id='drag1'>";
+                
+                myDiv.append(tmp);
+                tmp = "";
+            }
+        }
+
+        function allowDrop(ev) {
+            ev.preventDefault();
+        }
+
+        function drag(ev) {
+            ev.dataTransfer.setData("text/html", ev.target.id);
+        }
+
+        function drop(ev) {
+            ev.preventDefault();
+            var data = ev.dataTransfer.getData("text/html");
+            ev.target.appendChild(document.getElementById(data));
+        }
     </script>
 </body>
 </html>

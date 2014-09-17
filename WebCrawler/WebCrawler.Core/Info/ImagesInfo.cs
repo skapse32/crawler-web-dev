@@ -7,6 +7,8 @@ namespace WebCrawler.Core.Info
 {
     public class ImagesInfo
     {
+        public string Status { get; set; }
+
         public string ImagesLink { get; set; }
 
         public string Title { get; set; }
