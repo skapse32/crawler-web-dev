@@ -1,0 +1,103 @@
+﻿@import "http://fonts.googleapis.com/css?family=Arvo";
+/* Above line is used for online Google font */
+
+input #chkSelectAll{
+    background:linear-gradient(to bottom,#59d0f8 5%,#49c0e8 100%);
+    border:1px solid #0c799e;
+    font-size:15px;
+    color:#fff;
+    border-radius:5px;
+    cursor:pointer
+}
+input #chkSelectAll:hover{
+    background:linear-gradient(to bottom,#49c0e8 5%,#59d0f8 100%)
+}
+.check{
+    border-top:1px dashed #ccc;
+}
+/* -------------------------------------
+CSS for Checkbox (Check/Uncheck) with Checkbox
+---------------------------------------- */
+/*--------------------------------------------------------------------------------
+Creating Checkbox and label as a single unit(for Cross browser compatibility)
+----------------------------------------------------------------------------------*/
+
+.second input[type=checkbox], input[type=radio]
+{
+    display: none;
+}
+
+.second label
+{
+    display: inline;
+    float: left;
+    color: #000;
+    cursor: pointer;
+    text-indent: 20px;
+    white-space: nowrap;
+}
+
+.second input[type=checkbox] + label
+{
+    display          : block;
+    width            : 1em;
+    height           : 1em;
+    border           : 0.0625em solid rgb(192,192,192);
+    border-radius    : 0.25em;
+    background       : rgb(211,168,255);
+    background-image : -moz-linear-gradient(rgb(240,240,240),rgb(211,168,255));
+    background-image : -ms-linear-gradient(rgb(240,240,240),rgb(211,168,255));
+    background-image : -o-linear-gradient(rgb(240,240,240),rgb(211,168,255));
+    background-image : -webkit-linear-gradient(rgb(240,240,240),rgb(211,168,255));
+    background-image : linear-gradient(rgb(240,240,240),rgb(211,168,255));
+    vertical-align   : middle;
+    line-height      : 1em;
+    font-size        : 14px;
+    padding: 1px;
+    margin-bottom: 10px;
+}
+
+.second input[type=checkbox]:checked + label::before
+{
+    content         : "\2714";
+    color           : #000;
+    height          : 1em;
+    line-height     : 1.1em;
+    width           : 1em;
+    font-weight     : 900;
+    margin-right    : 6px;
+    margin-left     : -20px;
+}
+
+.second input[type=radio] + label  
+{
+    display          :block;
+    width            : 1em;
+    height           : 1em;
+    border           : 0.0625em solid rgb(192,192,192);
+    border-radius    : 1em;
+    background       : rgb(211,168,255);
+    background-image : -moz-linear-gradient(rgb(240,240,240),rgb(211,168,255));
+    background-image : -ms-linear-gradient(rgb(240,240,240),rgb(211,168,255));
+    background-image : -o-linear-gradient(rgb(240,240,240),rgb(211,168,255));
+    background-image : -webkit-linear-gradient(rgb(240,240,240),rgb(211,168,255));
+    background-image : linear-gradient(rgb(240,240,240),rgb(211,168,255));
+    vertical-align   : middle;
+    line-height      : 1em;
+    font-size        : 14px;
+}
+
+.second input[type=radio]:checked + label::before
+{
+    content         : "\2716";
+    color           : #fff;
+    display         : inline;
+    width           : 1em;
+    height          : 1em;
+    margin-right    : 6px;
+    margin-left     : -20px;
+}
+
+.m_2 {
+    margin-bottom: 35px;
+}
