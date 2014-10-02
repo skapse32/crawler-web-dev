@@ -1,0 +1,11 @@
+E:\HOC TAP\Jobs\Du an\crawler-web-dev\WebCrawler\WebCrawker.Test\obj\Debug\WebCrawker.Test.csprojResolveAssemblyReference.cache
+E:\HOC TAP\Jobs\Du an\crawler-web-dev\WebCrawler\WebCrawker.Test\obj\Debug\WebCrawker.Test.Form1.resources
+E:\HOC TAP\Jobs\Du an\crawler-web-dev\WebCrawler\WebCrawker.Test\obj\Debug\WebCrawker.Test.Properties.Resources.resources
+E:\HOC TAP\Jobs\Du an\crawler-web-dev\WebCrawler\WebCrawker.Test\obj\Debug\WebCrawker.Test.csproj.GenerateResource.Cache
+E:\HOC TAP\Jobs\Du an\crawler-web-dev\WebCrawler\WebCrawker.Test\bin\Debug\WebCrawker.Test.exe
+E:\HOC TAP\Jobs\Du an\crawler-web-dev\WebCrawler\WebCrawker.Test\bin\Debug\WebCrawker.Test.pdb
+E:\HOC TAP\Jobs\Du an\crawler-web-dev\WebCrawler\WebCrawker.Test\bin\Debug\WebCrawler.Core.dll
+E:\HOC TAP\Jobs\Du an\crawler-web-dev\WebCrawler\WebCrawker.Test\bin\Debug\WebCrawler.Core.pdb
+E:\HOC TAP\Jobs\Du an\crawler-web-dev\WebCrawler\WebCrawker.Test\obj\Debug\WebCrawker.Test.exe
+E:\HOC TAP\Jobs\Du an\crawler-web-dev\WebCrawler\WebCrawker.Test\obj\Debug\WebCrawker.Test.pdb
+E:\HOC TAP\Jobs\Du an\crawler-web-dev\WebCrawler\WebCrawker.Test\bin\Debug\WebCrawker.Test.exe.config
