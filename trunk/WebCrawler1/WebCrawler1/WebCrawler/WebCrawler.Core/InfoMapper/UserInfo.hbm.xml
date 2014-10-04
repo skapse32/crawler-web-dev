@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<hibernate-mapping assembly="WebCrawler.Core"  namespace="WebCrawler.Core.Info" xmlns="urn:nhibernate-mapping-2.2" >
+  <class name="UserInfo" table="tblUser" >
+    <meta attribute="class-description">
+      This class contains the employee detail.
+    </meta>
+    <id name="UserId" type="int" column="UserId">
+      <generator class="native"/>
+    </id>
+    <property name="UserName" column="UserName" type="string"/>
+    <property name="Password" column="Password" type="string"/>
+    <property name="is_lock" column="is_lock" type="bool"/>
+  </class>
+</hibernate-mapping>
