@@ -1,0 +1,36 @@
+E:\HOC TAP\Jobs\Du an\crawler-web-dev\WebCrawler\WebCrawler.Website\bin\WebCrawler.Website.dll
+E:\HOC TAP\Jobs\Du an\crawler-web-dev\WebCrawler\WebCrawler.Website\bin\WebCrawler.Website.pdb
+E:\HOC TAP\Jobs\Du an\crawler-web-dev\WebCrawler\WebCrawler.Website\obj\Release\WebCrawler.Website.dll
+E:\HOC TAP\Jobs\Du an\crawler-web-dev\WebCrawler\WebCrawler.Website\obj\Release\WebCrawler.Website.pdb
+E:\HOC TAP\Jobs\Du an\crawler-web-dev\WebCrawler\WebCrawler.Website\bin\WebCrawler.Core.dll
+E:\HOC TAP\Jobs\Du an\crawler-web-dev\WebCrawler\WebCrawler.Website\bin\NHibernate.dll
+E:\HOC TAP\Jobs\Du an\crawler-web-dev\WebCrawler\WebCrawler.Website\bin\Iesi.Collections.dll
+E:\HOC TAP\Jobs\Du an\crawler-web-dev\WebCrawler\WebCrawler.Website\bin\WebCrawler.Core.pdb
+E:\HOC TAP\Jobs\Du an\crawler-web-dev\WebCrawler\WebCrawler.Website\obj\Release\WebCrawler.Website.csprojResolveAssemblyReference.cache
+D:\HOC TAP\Jobs\Du an\crawler-web-dev\WebCrawler\WebCrawler.Website\bin\WebCrawler.Website.dll
+D:\HOC TAP\Jobs\Du an\crawler-web-dev\WebCrawler\WebCrawler.Website\bin\WebCrawler.Website.pdb
+D:\HOC TAP\Jobs\Du an\crawler-web-dev\WebCrawler\WebCrawler.Website\bin\WebCrawler.Core.dll
+D:\HOC TAP\Jobs\Du an\crawler-web-dev\WebCrawler\WebCrawler.Website\bin\NHibernate.dll
+D:\HOC TAP\Jobs\Du an\crawler-web-dev\WebCrawler\WebCrawler.Website\bin\Iesi.Collections.dll
+D:\HOC TAP\Jobs\Du an\crawler-web-dev\WebCrawler\WebCrawler.Website\bin\WebCrawler.Core.pdb
+D:\HOC TAP\Jobs\Du an\crawler-web-dev\WebCrawler\WebCrawler.Website\obj\Release\WebCrawler.Website.csprojResolveAssemblyReference.cache
+D:\HOC TAP\Jobs\Du an\crawler-web-dev\WebCrawler\WebCrawler.Website\obj\Release\WebCrawler.Website.dll
+D:\HOC TAP\Jobs\Du an\crawler-web-dev\WebCrawler\WebCrawler.Website\obj\Release\WebCrawler.Website.pdb
+C:\Users\THANHTUAN\Desktop\WebCrawler\WebCrawler\WebCrawler.Website\bin\WebCrawler.Website.dll
+C:\Users\THANHTUAN\Desktop\WebCrawler\WebCrawler\WebCrawler.Website\bin\WebCrawler.Website.pdb
+C:\Users\THANHTUAN\Desktop\WebCrawler\WebCrawler\WebCrawler.Website\bin\WebCrawler.Core.dll
+C:\Users\THANHTUAN\Desktop\WebCrawler\WebCrawler\WebCrawler.Website\bin\NHibernate.dll
+C:\Users\THANHTUAN\Desktop\WebCrawler\WebCrawler\WebCrawler.Website\bin\Iesi.Collections.dll
+C:\Users\THANHTUAN\Desktop\WebCrawler\WebCrawler\WebCrawler.Website\bin\WebCrawler.Core.pdb
+C:\Users\THANHTUAN\Desktop\WebCrawler\WebCrawler\WebCrawler.Website\obj\Release\WebCrawler.Website.csprojResolveAssemblyReference.cache
+C:\Users\THANHTUAN\Desktop\WebCrawler\WebCrawler\WebCrawler.Website\obj\Release\WebCrawler.Website.dll
+C:\Users\THANHTUAN\Desktop\WebCrawler\WebCrawler\WebCrawler.Website\obj\Release\WebCrawler.Website.pdb
+C:\Users\Thanh Tuan\Desktop\WebCrawler1\WebCrawler1\WebCrawler\WebCrawler.Website\bin\WebCrawler.Website.dll
+C:\Users\Thanh Tuan\Desktop\WebCrawler1\WebCrawler1\WebCrawler\WebCrawler.Website\bin\WebCrawler.Website.pdb
+C:\Users\Thanh Tuan\Desktop\WebCrawler1\WebCrawler1\WebCrawler\WebCrawler.Website\bin\WebCrawler.Core.dll
+C:\Users\Thanh Tuan\Desktop\WebCrawler1\WebCrawler1\WebCrawler\WebCrawler.Website\bin\NHibernate.dll
+C:\Users\Thanh Tuan\Desktop\WebCrawler1\WebCrawler1\WebCrawler\WebCrawler.Website\bin\Iesi.Collections.dll
+C:\Users\Thanh Tuan\Desktop\WebCrawler1\WebCrawler1\WebCrawler\WebCrawler.Website\bin\WebCrawler.Core.pdb
+C:\Users\Thanh Tuan\Desktop\WebCrawler1\WebCrawler1\WebCrawler\WebCrawler.Website\obj\Release\WebCrawler.Website.dll
+C:\Users\Thanh Tuan\Desktop\WebCrawler1\WebCrawler1\WebCrawler\WebCrawler.Website\obj\Release\WebCrawler.Website.pdb
+C:\Users\Thanh Tuan\Desktop\WebCrawler1\WebCrawler1\WebCrawler\WebCrawler.Website\obj\Release\WebCrawler.Website.csprojResolveAssemblyReference.cache

@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<hibernate-mapping assembly="WebCrawler.Core"  namespace="WebCrawler.Core.Info" xmlns="urn:nhibernate-mapping-2.2" >
+  <class name="FolderMediaInfo" table="tblFolderMedia" >
+    <meta attribute="class-description">
+      This class contains the employee detail.
+    </meta>
+    <id name="FolderId" type="int" column="FolderId">
+      <generator class="native"/>
+    </id>
+    <property name="UserId" column="UserId" type="int"/>
+    <property name="FolderName" column="FolderName" type="string"/>
+    <property name="FolderDescription" column="FolderDescription" type="string"/>
+    <property name="FolderImage" column="FolderImage" type="string"/>
+    <property name="FolderDateCreate" column="FolderDateCreate" type="Date"/>
+  </class>
+</hibernate-mapping>

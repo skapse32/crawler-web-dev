@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<hibernate-mapping assembly="WebCrawler.Core"  namespace="WebCrawler.Core.Info" xmlns="urn:nhibernate-mapping-2.2" >
+  <class name="TemplateInfo" table="tblTemplate" >
+    <id name="TemplateId" type="Int32" column="TemplateId">
+      <generator class="native"/>
+    </id>
+    <property name="TemplateName" column="TemplateName" type="string"/>
+    <property name="TemplateContent" column="TemplateContent" type="string"/>
+    <property name="templateImageCover" column="templateImageCover" type="string"/>
+    <property name="TemplateStatus" column="TemplateStatus" type="bool"/>
+  </class>
+</hibernate-mapping>

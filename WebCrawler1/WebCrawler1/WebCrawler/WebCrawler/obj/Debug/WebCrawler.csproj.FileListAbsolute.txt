@@ -1,0 +1,23 @@
+c:\users\thanhtuan\documents\visual studio 2012\Projects\WebCrawler\WebCrawler\bin\WebCrawler.dll
+c:\users\thanhtuan\documents\visual studio 2012\Projects\WebCrawler\WebCrawler\bin\WebCrawler.pdb
+c:\users\thanhtuan\documents\visual studio 2012\Projects\WebCrawler\WebCrawler\bin\WebCrawler.Core.dll
+c:\users\thanhtuan\documents\visual studio 2012\Projects\WebCrawler\WebCrawler\bin\WebCrawler.Core.pdb
+c:\users\thanhtuan\documents\visual studio 2012\Projects\WebCrawler\WebCrawler\obj\Debug\WebCrawler.csprojResolveAssemblyReference.cache
+c:\users\thanhtuan\documents\visual studio 2012\Projects\WebCrawler\WebCrawler\obj\Debug\WebCrawler.dll
+c:\users\thanhtuan\documents\visual studio 2012\Projects\WebCrawler\WebCrawler\obj\Debug\WebCrawler.pdb
+E:\HOC TAP\Jobs\Du an\crawler-web-dev\WebCrawler\WebCrawler\obj\Debug\WebCrawler.csprojResolveAssemblyReference.cache
+E:\HOC TAP\Jobs\Du an\crawler-web-dev\WebCrawler\WebCrawler\obj\Debug\WebCrawler.dll
+E:\HOC TAP\Jobs\Du an\crawler-web-dev\WebCrawler\WebCrawler\bin\WebCrawler.dll
+E:\HOC TAP\Jobs\Du an\crawler-web-dev\WebCrawler\WebCrawler\bin\WebCrawler.pdb
+E:\HOC TAP\Jobs\Du an\crawler-web-dev\WebCrawler\WebCrawler\bin\WebCrawler.Core.dll
+E:\HOC TAP\Jobs\Du an\crawler-web-dev\WebCrawler\WebCrawler\bin\WebCrawler.Core.pdb
+E:\HOC TAP\Jobs\Du an\crawler-web-dev\WebCrawler\WebCrawler\obj\Debug\WebCrawler.pdb
+D:\Job\break_time\crawler-web-dev\WebCrawler\WebCrawler\bin\WebCrawler.dll
+D:\Job\break_time\crawler-web-dev\WebCrawler\WebCrawler\bin\WebCrawler.pdb
+D:\Job\break_time\crawler-web-dev\WebCrawler\WebCrawler\bin\WebCrawler.Core.dll
+D:\Job\break_time\crawler-web-dev\WebCrawler\WebCrawler\bin\NHibernate.dll
+D:\Job\break_time\crawler-web-dev\WebCrawler\WebCrawler\bin\Iesi.Collections.dll
+D:\Job\break_time\crawler-web-dev\WebCrawler\WebCrawler\bin\WebCrawler.Core.pdb
+D:\Job\break_time\crawler-web-dev\WebCrawler\WebCrawler\obj\Debug\WebCrawler.csprojResolveAssemblyReference.cache
+D:\Job\break_time\crawler-web-dev\WebCrawler\WebCrawler\obj\Debug\WebCrawler.dll
+D:\Job\break_time\crawler-web-dev\WebCrawler\WebCrawler\obj\Debug\WebCrawler.pdb
